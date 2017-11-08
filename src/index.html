@@ -8,8 +8,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
   <app-root></app-root>
 </body>
 </html>
+
+<script>
+  var todoList =[];
+
+  function add_todo() {
+     var todo = {
+       isFinished: false,
+       todo: $('#input_todo').val(),
+       created: new Date(),
+       updated: new Date()
+     };
+
+     todoList.push(todo);
+
+     refresh();
+  }
+
+  function refresh() {
+    $('#todo_list').empty();
+
+    todoList.forEach(function(item, index) {
+      var todo =
+        '<tr>' +
+        '<td>' +
+        '<input type="checkbox" ' + (item.isFinished?'checked':'') + ' value="' + item.isFinished + '" onchange="update(' + index + ')">' +
+        '</td>' +
+        (item.isFinished?'<td style="text-decoration: line-through">':'<td>') + item.todo + '</td>' +
+        '<td>' + item.created + '</td>' +
+        '<td>' + item.updated + '</td>' +
+        '<td>' +
+        '<button type="button" onclick="remove(' + index + ')">삭제</button>' +
+        '</td>' +
+        '</tr>';
+      $('#todo_list').append(todo);
+    });
+  }
+
+</script>
