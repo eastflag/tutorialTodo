@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import {MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule} from "@angular/material";
+import {MatButtonModule, MatCardModule, MatIconModule, MatMenuModule, MatToolbarModule} from "@angular/material";
 import { IndexComponent } from './index/index.component';
 import { HomeComponent } from './home/home.component';
 import { JqueryComponent } from './jquery/jquery.component';
@@ -26,6 +26,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatIconModule,
     MatMenuModule,
     MatButtonModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
