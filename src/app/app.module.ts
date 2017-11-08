@@ -10,6 +10,7 @@ import { JqueryComponent } from './jquery/jquery.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import { AngularComponent } from './angular/angular.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     AppComponent,
     IndexComponent,
     HomeComponent,
-    JqueryComponent
+    JqueryComponent,
+    AngularComponent
   ],
   imports: [
     BrowserModule,
