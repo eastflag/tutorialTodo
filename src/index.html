@@ -18,17 +18,36 @@
 <script>
   var todoList =[];
 
+  $(document).ready(function () {
+    console.log('docunet ready');
+    getTodoList();
+  });
+
+  function getTodoList() {
+    $.ajax({
+      url: 'http://www.javabrain.kr:8080/api/todo',
+      method: 'GET',
+      datatype: 'json',
+      success: function(data) {
+        console.log(data);
+        todoList = data;
+        refresh();
+      }
+    });
+  }
+
   function add_todo() {
-     var todo = {
-       isFinished: false,
-       todo: $('#input_todo').val(),
-       created: new Date(),
-       updated: new Date()
-     };
-
-     todoList.push(todo);
-
-     refresh();
+    $.ajax({
+      url: 'http://www.javabrain.kr:8080/api/todo',
+      method: 'POST',
+      data: JSON.stringify({todo: $('#input_todo').val(), isFinished: false}),
+      contentType: 'application/json',
+      datatype: 'json',
+      success: function(data) {
+        console.log(data);
+        getTodoList();
+      }
+    });
   }
 
   function refresh() {
@@ -48,6 +67,41 @@
         '</td>' +
         '</tr>';
       $('#todo_list').append(todo);
+    });
+  }
+
+  function update(index) {
+    var updateTodo = {
+      todo_id: todoList[index].todo_id,
+      isFinished: !todoList[index].isFinished,
+      todo: todoList[index].todo
+    };
+
+    $.ajax({
+      url: 'http://www.javabrain.kr:8080/api/todo',
+      method: 'PUT',
+      data: JSON.stringify(updateTodo),
+      contentType: 'application/json',
+      datatype: 'json',
+      success: function(data) {
+        console.log(data);
+        getTodoList();
+      }
+    });
+
+    refresh();
+  }
+
+  function remove(index) {
+
+    $.ajax({
+      url: 'http://www.javabrain.kr:8080/api/todo?todo_id=' + todoList[index].todo_id,
+      method: 'DELETE',
+      datatype: 'json',
+      success: function(data) {
+        console.log(data);
+        getTodoList();
+      }
     });
   }
 
