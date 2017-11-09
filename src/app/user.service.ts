@@ -24,6 +24,14 @@ export class UserService {
     return this.http.get(this.SERVER + '/api/todo').toPromise();
   }
 
+  modifyTodo(params: TodoVo) {
+    return this.http.put(this.SERVER + '/api/todo', JSON.stringify(params), {headers: this.headers}).toPromise();
+  }
+
+  removeTodo(todo_id: number) {
+    return this.http.delete(this.SERVER + '/api/todo?todo_id=' + todo_id).toPromise();
+  }
+
 /*  private extractData(res: Response) {
     console.log(res);
     const body = res.json();
