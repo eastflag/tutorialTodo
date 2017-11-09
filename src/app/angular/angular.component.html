@@ -40,7 +40,7 @@
             <button mat-raised-button color="warn" (click)="remove(item)">삭제</button>
           </td>
         </tr>
-        <tr *ngIf="item.isEdited" [@flyInOut] = "'in'">
+        <tr *ngIf="item.isEdited">
           <td>
             <input type="checkbox" [(ngModel)]="item.isFinished">
           </td>
