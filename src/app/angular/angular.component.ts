@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {TodoVo} from "../domain/todo.vo";
 
 @Component({
   selector: 'app-angular',
@@ -8,9 +9,15 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 })
 export class AngularComponent implements OnInit {
 
+  todoList: Array<TodoVo>;
+  newTodo = new TodoVo();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  add_todo() {
+    console.log('click');
+  }
 }
