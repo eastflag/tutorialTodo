@@ -1,6 +1,6 @@
 export class TodoVo {
   todo_id: number;
-  isFinished: boolean;
+  isFinished = false;
   todo: string;
   created: string;
   updated: string;

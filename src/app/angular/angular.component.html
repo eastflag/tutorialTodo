@@ -31,14 +31,13 @@
         <td>
           <input type="checkbox" (change)="update(item)">
         </td>
-        &lt;!&ndash;<td [ngStyle]="{'text-decoration': item.isFinished?'line-through':'none'}">{{item.todo}}</td>&ndash;&gt;
         <td [class.todo_canceled]="item.isFinished">{{item.todo}}</td>
-        <td>{{item.created | myDate}}</td>
-        <td>{{item.updated | myDate}}</td>
+        <td>{{item.created}}</td>
+        <td>{{item.updated}}</td>
         <td>
-          <button type="button" class="btn btn-danger" (click)="delete(i)">삭제</button>
+          <button mat-raised-button color="warn">삭제</button>
         </td>
-      </tr>-->
+      </tr> -->
       </tbody>
     </table>
   </mat-card-content>

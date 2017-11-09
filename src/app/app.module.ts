@@ -15,6 +15,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { AngularComponent } from './angular/angular.component';
 import {FormsModule} from "@angular/forms";
+import {UserService} from "./user.service";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -30,6 +32,7 @@ import {FormsModule} from "@angular/forms";
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule,
     FlexLayoutModule,
     MatToolbarModule,
     MatIconModule,
@@ -39,7 +42,7 @@ import {FormsModule} from "@angular/forms";
     MatFormFieldModule,
     MatInputModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
