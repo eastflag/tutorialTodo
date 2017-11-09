@@ -1,4 +1,4 @@
-export class TodoVo {
+export class TodoVO {
   todo_id: number;
   isFinished = false;
   todo: string;

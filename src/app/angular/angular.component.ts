@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {TodoVo} from "../domain/todo.vo";
+import {TodoVO} from "../domain/todo.vo";
 import {UserService} from "../user.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {ResultVO} from "../domain/result.vo";
 
 @Component({
   selector: 'app-angular',
@@ -23,10 +24,10 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 })
 export class AngularComponent implements OnInit {
 
-  todoList = new Array<TodoVo>();
-  newTodo = new TodoVo();
+  todoList = new Array<TodoVO>();
+  newTodo = new TodoVO();
   // 취소시 복원하기 위한 데이터를 저장하는 컬렉션 :  number 에는 todo_id 저장
-  tempTodoList: Map<number, TodoVo> = new Map<number, TodoVo>();
+  tempTodoList: Map<number, TodoVO> = new Map<number, TodoVO>();
 
   constructor(private userService: UserService) { }
 
@@ -37,7 +38,7 @@ export class AngularComponent implements OnInit {
   getTodoList() {
     console.log('getTodoList');
     this.userService.getTodoList()
-      .then(data => {
+      .then((data: Array<TodoVO>) => {
         this.todoList = data;
       });
   }
@@ -46,17 +47,17 @@ export class AngularComponent implements OnInit {
     console.log('click');
 
     this.userService.addTodo(this.newTodo)
-      .then((data: TodoVo) => {
+      .then((data: TodoVO) => {
         console.log(data);
         this.todoList.unshift(data);
       });
 
-    this.newTodo = new TodoVo();
+    this.newTodo = new TodoVO();
   }
 
-  modify(item: TodoVo) {
+  modify(item: TodoVO) {
     this.userService.modifyTodo(item)
-      .then((data: TodoVo) => {
+      .then((data: TodoVO) => {
         item.isFinished = data.isFinished;
         item.todo = data.todo;
         // 에디터 상태 복원
@@ -64,7 +65,7 @@ export class AngularComponent implements OnInit {
       });
   }
 
-  restore(todoVo: TodoVo) {
+  restore(todoVo: TodoVO) {
     todoVo.isEdited = false;
 
     let tempTodo = this.tempTodoList.get(todoVo.todo_id);
@@ -73,20 +74,20 @@ export class AngularComponent implements OnInit {
   }
 
 
-  save(todoVo: TodoVo) {
+  save(todoVo: TodoVO) {
     todoVo.isEdited = true;
 
-    let tempTodo = new TodoVo();
+    let tempTodo = new TodoVO();
     tempTodo.isFinished = todoVo.isFinished;
     tempTodo.todo = todoVo.todo;
     this.tempTodoList.set(todoVo.todo_id, tempTodo);
   }
 
-  remove(todoVo: TodoVo) {
+  remove(todoVo: TodoVO) {
     const result = confirm(todoVo.todo + '을(를) 삭제하시겠습니까?');
     if (result) {
       this.userService.removeTodo(todoVo.todo_id)
-        .then(res => {
+        .then((res: ResultVO) => {
           if (res.result === 0) {
             this.todoList.forEach((item, index) => {
               if (item.todo_id === todoVo.todo_id) {
