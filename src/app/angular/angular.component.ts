@@ -16,6 +16,15 @@ export class AngularComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.getTodoList();
+  }
+
+  getTodoList() {
+    console.log('getTodoList');
+    this.userService.getTodoList()
+      .then(data => {
+        this.todoList = data;
+      });
   }
 
   add_todo() {

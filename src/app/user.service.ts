@@ -20,6 +20,10 @@ export class UserService {
     return this.http.post(this.SERVER + '/api/todo', JSON.stringify(params), {headers: this.headers}).toPromise();
   }
 
+  getTodoList() {
+    return this.http.get(this.SERVER + '/api/todo').toPromise();
+  }
+
 /*  private extractData(res: Response) {
     console.log(res);
     const body = res.json();
