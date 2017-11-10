@@ -28,7 +28,7 @@
       </thead>
       <tbody>
       <ng-template ngFor let-item [ngForOf]="todoList">
-        <tr *ngIf="!item.isEdited" [@flyInOut] = "'in'" [appHighlight]="yellow">
+        <tr *ngIf="!item.isEdited" [@flyInOut] = "'in'" appHighlight [highlightColor]="'#C8FFFF'">
           <td>
             {{item.isFinished ? '완료' : '미완료'}}
           </td>
