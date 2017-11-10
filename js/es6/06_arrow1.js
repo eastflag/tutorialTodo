@@ -1,4 +1,4 @@
-let circleArea = (pi, r) => {
+let circleArea = function(pi, r) {
     let area = pi * r * r;
     return area;
 };
