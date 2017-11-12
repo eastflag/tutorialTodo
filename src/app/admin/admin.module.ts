@@ -4,18 +4,21 @@ import { AdminComponent } from './admin/admin.component';
 import { NewsComponent } from './news/news.component';
 import { HomeComponent } from './home/home.component';
 import {AdminRoutingModule} from "./admin-routing";
-import {MatButtonModule, MatCardModule, MatToolbarModule} from "@angular/material";
+import {MatButtonModule, MatCardModule, MatPaginatorModule, MatToolbarModule} from "@angular/material";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {AdminService} from "./admin.service";
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule,
+    FlexLayoutModule,
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
-    FlexLayoutModule,
+    MatPaginatorModule,
   ],
-  declarations: [AdminComponent, NewsComponent, HomeComponent]
+  declarations: [AdminComponent, NewsComponent, HomeComponent],
+  providers: [AdminService]
 })
 export class AdminModule { }
