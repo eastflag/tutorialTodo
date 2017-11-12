@@ -8,11 +8,10 @@
       <ckeditor [(ngModel)]="news.content" debounce="10">
       </ckeditor>
     </div>
-<!--    <div>
+    <div>
       <label for="uploadedImage">업로드 이미지 선택</label>
       <input type="file" (change)="fileChange($event)" id="uploadedImage" accept="images/*" #newFile>
-      <img *ngIf="thumbnailSrc" [src]="thumbnailSrc" style="width:100px; height: auto;">
-    </div>-->
+    </div>
     <div style="margin-top: 1em;" fxLayoutAlign="center center">
       <button mat-raised-button mat-button-sm color="primary" (click)="addNews()">저 장</button>
     </div>
