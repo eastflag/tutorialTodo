@@ -13,10 +13,12 @@ import {Router} from "@angular/router";
 export class NewsComponent implements OnInit {
   page: PageVO = new PageVO(0, 5);
   newsList: Array<NewsVO>;
+  selectedNews: NewsVO;
 
   constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit() {
+    console.log('news init');
     this.getNewsList();
   }
 
@@ -42,6 +44,7 @@ export class NewsComponent implements OnInit {
   }
 
   gotoView(news: NewsVO) {
+    this.selectedNews = news;
     this.router.navigateByUrl(`/admin/news/view/${news.news_id}`);
   }
 
