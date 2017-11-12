@@ -3,11 +3,14 @@ import {RouterModule, Routes} from "@angular/router";
 import {NewsComponent} from "./news/news.component";
 import {HomeComponent} from "./home/home.component";
 import {AdminComponent} from "./admin/admin.component";
+import {ViewComponent} from "./news/view/view.component";
 
 const routes: Routes = [
   { path: '', component: AdminComponent, children: [
     { path: '', component: HomeComponent},
-    { path: 'news', component: NewsComponent},
+    { path: 'news', component: NewsComponent, children: [
+      {path: 'view/:news_id', component: ViewComponent},
+    ]},
   ]}
 ];
 

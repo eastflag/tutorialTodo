@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {PageVO} from "../../domain/page.vo";
 import {AdminService} from "../admin.service";
 import {NewsVO} from "../../domain/news.vo";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-news',
@@ -13,7 +14,7 @@ export class NewsComponent implements OnInit {
   page: PageVO = new PageVO(0, 5);
   newsList: Array<NewsVO>;
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit() {
     this.getNewsList();
@@ -39,4 +40,9 @@ export class NewsComponent implements OnInit {
     this.page.pageSize = event.pageSize;
     this.getNewsList();
   }
+
+  gotoView(news: NewsVO) {
+    this.router.navigateByUrl(`/admin/news/view/${news.news_id}`);
+  }
+
 }

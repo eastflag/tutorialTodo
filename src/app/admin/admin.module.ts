@@ -7,6 +7,8 @@ import {AdminRoutingModule} from "./admin-routing";
 import {MatButtonModule, MatCardModule, MatPaginatorModule, MatToolbarModule} from "@angular/material";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {AdminService} from "./admin.service";
+import { WriteComponent } from './news/write/write.component';
+import { ViewComponent } from './news/view/view.component';
 
 @NgModule({
   imports: [
@@ -18,7 +20,7 @@ import {AdminService} from "./admin.service";
     MatButtonModule,
     MatPaginatorModule,
   ],
-  declarations: [AdminComponent, NewsComponent, HomeComponent],
+  declarations: [AdminComponent, NewsComponent, HomeComponent, WriteComponent, ViewComponent],
   providers: [AdminService]
 })
 export class AdminModule { }
