@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AdminService} from "../../admin.service";
 import {NewsVO} from "../../../domain/news.vo";
 import {PlatformLocation} from "@angular/common";
+import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
 
 @Component({
   selector: 'app-view',
@@ -14,7 +15,7 @@ export class ViewComponent implements OnInit {
   news: NewsVO;
 
   constructor(private route: ActivatedRoute, private adminService: AdminService, private location: PlatformLocation,
-              private router: Router) { }
+              private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -26,9 +27,23 @@ export class ViewComponent implements OnInit {
     });
   }
 
-
   gotoModify() {
     let path = this.location.pathname;
     this.router.navigateByUrl(path.replace('view', 'modify'));
+  }
+
+  confirmDelete(news: NewsVO) {
+    const result = confirm('삭제하시겠습니까?');
+    if (result) {
+      this.adminService.removeNews(news.news_id)
+        .then(value => {
+          if (value['result'] === 0) {
+            let conf = new MatSnackBarConfig();
+            conf.duration = 3000;
+            this.snackBar.open('삭제하였습니다.', null, conf);
+            this.router.navigate(['../..'], {relativeTo: this.route});
+          }
+        });
+    }
   }
 }
