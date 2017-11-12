@@ -3,7 +3,9 @@
     <mat-card-title>글쓰기</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <input mdInput placeholder="제목" [(ngModel)]="news.title" style="width: 100%;margin: 1rem 0;">
+    <mat-form-field style="width: 100%;">
+      <input matInput placeholder="제목" [(ngModel)]="news.title">
+    </mat-form-field>
     <div>
       <ckeditor [(ngModel)]="news.content" debounce="10">
       </ckeditor>
