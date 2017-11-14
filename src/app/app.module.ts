@@ -19,6 +19,10 @@ import {UserService} from "./user.service";
 import {HttpClientModule} from "@angular/common/http";
 import { HighlightDirective } from './highlight.directive';
 import {MyDatePipe} from './my.date.pipe';
+import { LoginComponent } from './auth/login/login.component';
+import {AngularFireAuth, AngularFireAuthModule} from "angularfire2/auth";
+import {AngularFireModule} from "angularfire2";
+import {environment} from "../environments/environment";
 
 
 @NgModule({
@@ -29,7 +33,8 @@ import {MyDatePipe} from './my.date.pipe';
     JqueryComponent,
     AngularComponent,
     HighlightDirective,
-    MyDatePipe
+    MyDatePipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,7 @@ import {MyDatePipe} from './my.date.pipe';
     AppRoutingModule,
     HttpClientModule,
     FlexLayoutModule,
+    AngularFireModule.initializeApp(environment.firebase),
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
@@ -46,7 +52,7 @@ import {MyDatePipe} from './my.date.pipe';
     MatFormFieldModule,
     MatInputModule,
   ],
-  providers: [UserService],
+  providers: [UserService, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
