@@ -4,14 +4,26 @@ import {UserService} from "../user.service";
 import {AngularFireAuth} from "angularfire2/auth";
 import {MemberVO} from "../domain/member.vo";
 import {ResultVO} from "../domain/result.vo";
+import {JwtHelper} from "angular2-jwt";
 
 @Injectable()
 export class AuthGuardService {
-  // private jwtHelper: JwtHelper;
+  private jwtHelper: JwtHelper;
   redirectUrl: string;
 
   constructor(private router: Router, private userService: UserService,  public afAuth: AngularFireAuth) {
-    // this.jwtHelper = new JwtHelper();
+    this.jwtHelper = new JwtHelper();
+  }
+
+  isAuthenticated(): boolean {
+    let token = localStorage.getItem('token');
+
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
+      console.log(this.jwtHelper.decodeToken(token));
+      return true;
+    } else {
+      return false;
+    }
   }
 
   logOut() {

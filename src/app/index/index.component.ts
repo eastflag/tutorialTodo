@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AuthGuardService} from "../auth/auth-guard.service";
 
 @Component({
   selector: 'app-index',
@@ -8,7 +9,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthGuardService) { }
 
   ngOnInit() {
   }
