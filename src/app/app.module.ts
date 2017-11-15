@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {
-  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule,
+  MatSnackBarModule,
   MatToolbarModule
 } from "@angular/material";
 import { IndexComponent } from './index/index.component';
@@ -54,6 +55,8 @@ import { RegisterComponent } from './auth/register/register.component';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
   ],
   providers: [UserService, AngularFireAuth, AuthGuardService],
   bootstrap: [AppComponent]

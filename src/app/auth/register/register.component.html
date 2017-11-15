@@ -1,3 +1,35 @@
-<p>
-  register works!
-</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      ng2spring 카페 회원가입
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content fxLayout="column">
+    <mat-form-field>
+      <input matInput [(ngModel)]="member.nickname" placeholder="닉네임">
+    </mat-form-field>
+    <mat-checkbox [(ngModel)]="isTerm">이용약관동의</mat-checkbox>
+    <div class="term-box">
+      <div>
+        <p>
+          제1조 총칙
+        </p>
+        <p>
+          여기는 이용약관 동의가 들어갑니다.
+      </div>
+    </div>
+    <mat-checkbox [(ngModel)]="isInfo">개인정보이용동의</mat-checkbox>
+    <div class="term-box">
+      <div>
+        <p>
+          제 1 장 총 칙
+        </p>　
+        <p>
+          여기는 개인정보이용동의가 들어갑니다.
+      </div>
+    </div>
+    <button type="submit" mat-raised-button color="primary" (click)="register()">
+      가 입
+    </button>
+  </mat-card-content>
+</mat-card>
