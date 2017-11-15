@@ -15,12 +15,15 @@
         <input matInput [(ngModel)]="member.pw" name="pw" type="password" placeholder="패스워드">
         <mat-icon matSuffix>security</mat-icon>
       </mat-form-field>
-      <button mat-raised-button color="primary" class="mat-block" (click)="loginWithPassword()">
+      <button mat-raised-button color="primary" class="mat-block" (click)="signupWithPassword()">
+        <mat-icon>person_add</mat-icon>SignUp
+      </button>
+      <button mat-raised-button color="primary" class="mat-block" (click)="loginWithPassword()" style="margin: 1rem 0;">
         <mat-icon>input</mat-icon>Login with Email
       </button>
 
-      <button mat-raised-button color="accent" (click)="loginWithGoogle()" style="margin-top: 1rem;">
-        Login with Facebook
+      <button mat-raised-button color="accent" (click)="loginWithGoogle()">
+        Login with Google
       </button>
     </mat-card-content>
 

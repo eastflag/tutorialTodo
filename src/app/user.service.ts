@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../environments/environment";
 import {TodoVO} from "./domain/todo.vo";
+import {MemberVO} from "./domain/member.vo";
+import {ResultVO} from "./domain/result.vo";
 
 @Injectable()
 export class UserService {
@@ -30,6 +32,17 @@ export class UserService {
 
   removeTodo(todo_id: number) {
     return this.http.delete(this.SERVER + '/api/todo?todo_id=' + todo_id).toPromise();
+  }
+
+  // login & signUp
+  signUp(params: MemberVO) {
+    return this.http.post(this.SERVER + '/api/signUp', JSON.stringify(params), {headers: this.headers})
+      .toPromise();
+  }
+
+  login(params: MemberVO) {
+    return this.http.post(this.SERVER + '/api/login', JSON.stringify(params), {headers: this.headers})
+      .toPromise();
   }
 
 /*  private extractData(res: Response) {

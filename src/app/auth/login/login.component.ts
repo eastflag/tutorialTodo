@@ -4,6 +4,7 @@ import * as firebase from "firebase";
 import {AngularFireAuth} from "angularfire2/auth";
 import {Router} from "@angular/router";
 import {MemberVO} from "../../domain/member.vo";
+import {AuthGuardService} from "../auth-guard.service";
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   authState: Observable<firebase.User>;
   currentUser: firebase.User = null;
 
-  constructor(public afAuth: AngularFireAuth, private router: Router) {
+  constructor(public afAuth: AngularFireAuth, private router: Router, private authGuard: AuthGuardService) {
     this.authState = this.afAuth.authState;
     this.authState.subscribe(user => {
       if (user) {
@@ -24,6 +25,9 @@ export class LoginComponent implements OnInit {
         this.currentUser = user;
         console.log(this.currentUser);
         // 소셜로그인 성공 후 서버에 인증 및 권한 획득한다.
+        this.member.email = this.currentUser.email;
+        this.member.photo_url = this.currentUser.photoURL;
+        this.authGuard.login(this.member);
       } else {
         this.currentUser = null;
       }
@@ -31,6 +35,16 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  signupWithPassword() {
+    this.afAuth.auth.createUserWithEmailAndPassword(this.member.email, this.member.pw)
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   loginWithPassword() {

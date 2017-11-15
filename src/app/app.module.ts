@@ -23,6 +23,8 @@ import { LoginComponent } from './auth/login/login.component';
 import {AngularFireAuth, AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireModule} from "angularfire2";
 import {environment} from "../environments/environment";
+import {AuthGuardService} from "./auth/auth-guard.service";
+import { RegisterComponent } from './auth/register/register.component';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import {environment} from "../environments/environment";
     AngularComponent,
     HighlightDirective,
     MyDatePipe,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,7 @@ import {environment} from "../environments/environment";
     MatFormFieldModule,
     MatInputModule,
   ],
-  providers: [UserService, AngularFireAuth],
+  providers: [UserService, AngularFireAuth, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
