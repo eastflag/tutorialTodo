@@ -1,3 +1,5 @@
+// promise 사용법
+
 let async1 = function (param) {
   return new Promise((resolve, reject)=>{
      if(param && param > 0) {
@@ -11,15 +13,15 @@ let async1 = function (param) {
 };
 
 async1(0)
-    .then(value=> console.log(value), value=>console.log(value));
+    .then(value=> console.log('resolve1:', value), value=>console.log('error1:', value));
 
 async1(0)
-    .then(value=> console.log(value))
-    .catch(value=> console.log(value));
+    .then(value=> console.log('resolve2:', value))
+    .catch(value=> console.log('error2:', value));
 
 async1(0)
     .then(value=> {
-        console.log('res:' + value);
+        console.log('resolve3:' + value);
         JSON.parse(value);
     })
     .catch(value=>console.log('catch:' + value));
