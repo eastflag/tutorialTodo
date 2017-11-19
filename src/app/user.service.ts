@@ -45,6 +45,15 @@ export class UserService {
       .toPromise();
   }
 
+  // 뉴스 관리 ---------------------------------------------------------------------------------------------------------
+  findNews(params: any) {
+    return this.http.post(this.SERVER + '/api/newsList', JSON.stringify(params), {headers: this.headers});
+  }
+
+  findOneNews(params: any) {
+    return this.http.get(this.SERVER + '/api/news?news_id=' + params);
+  }
+
 /*  private extractData(res: Response) {
     console.log(res);
     const body = res.json();

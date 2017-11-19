@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule,
+  MatPaginatorModule,
   MatSnackBarModule,
   MatToolbarModule
 } from "@angular/material";
@@ -27,6 +28,7 @@ import {environment} from "../environments/environment";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import { RegisterComponent } from './auth/register/register.component';
 import { NicknameComponent } from './nickname/nickname.component';
+import { NewsComponent } from './news/news.component';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { NicknameComponent } from './nickname/nickname.component';
     MyDatePipe,
     LoginComponent,
     RegisterComponent,
-    NicknameComponent
+    NicknameComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ import { NicknameComponent } from './nickname/nickname.component';
     MatInputModule,
     MatCheckboxModule,
     MatSnackBarModule,
+    MatPaginatorModule
   ],
   providers: [UserService, AngularFireAuth, AuthGuardService],
   bootstrap: [AppComponent]
