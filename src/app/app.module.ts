@@ -30,6 +30,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { NicknameComponent } from './nickname/nickname.component';
 import { NewsComponent } from './news/news.component';
 import { ViewComponent } from './news/view/view.component';
+import { CommentComponent } from './comment/comment.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { ViewComponent } from './news/view/view.component';
     RegisterComponent,
     NicknameComponent,
     NewsComponent,
-    ViewComponent
+    ViewComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

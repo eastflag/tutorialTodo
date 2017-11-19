@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-header>
+    <p style="margin: 1rem 0;">댓글작성</p>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field class="mat-block">
+      <textarea matInput [(ngModel)]="newComment.content" #content maxlength="300" placeholder="댓글을 작성하세요"
+                (focus)="checkLogin()"
+                rows="5" style="border: 1px solid #dddddd"></textarea>
+      <mat-hint align="end">{{content.value.length}} / 300</mat-hint>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions fxLayoutAlign="end center">
+    <button mat-raised-button mat-button-sm color="primary" (click)="saveComment()">완료</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card *ngFor="let comment of commentList">
+  <mat-card-content class="comment-box">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span>{{comment.name}}</span>
+      <span>{{comment.updated}}</span>
+    </div>
+    <p>{{comment.content}}</p>
+  </mat-card-content>
+  <mat-card-actions fxLayoutAlign="end center" *ngIf="comment.member_id == authService.getMemberId()">
+    <button mat-raised-button mat-button-sm color="warn" (click)="confirmDelete(comment)">삭제</button>
+  </mat-card-actions>
+</mat-card>
