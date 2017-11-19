@@ -3,4 +3,5 @@ export class NewsVO {
   title: string;
   content: string;
   updated: string;
+  comment_count: number;
 }

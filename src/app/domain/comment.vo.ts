@@ -6,5 +6,5 @@ export class CommentVO {
   created: string;
   updated: string;
 
-  name: string;
+  nickname: string;
 }

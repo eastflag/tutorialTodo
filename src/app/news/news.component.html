@@ -8,9 +8,13 @@
   </mat-card-header>
   <mat-card-content>
     <div class="board-box" fxLayout="column" *ngFor="let news of newsList" (click)="gotoView(news)">
-      <p fxLayout="row" fxLayoutAlign="space-between center">
-        <span>{{news.title}}</span><span>{{news.updated}}</span>
-      </p>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <p>
+          <span>{{news.title}}</span>
+          <span *ngIf="news.comment_count" class="comment-count">[{{news.comment_count}}]</span>
+        </p>
+        <span>{{news.updated}}</span>
+      </div>
     </div>
 
     <mat-paginator [length]="page.totalCount" [pageIndex]="page.pageIndex"

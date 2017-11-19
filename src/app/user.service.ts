@@ -4,6 +4,7 @@ import {environment} from "../environments/environment";
 import {TodoVO} from "./domain/todo.vo";
 import {MemberVO} from "./domain/member.vo";
 import {ResultVO} from "./domain/result.vo";
+import {CommentVO} from "./domain/comment.vo";
 
 @Injectable()
 export class UserService {
@@ -52,6 +53,23 @@ export class UserService {
 
   findOneNews(params: any) {
     return this.http.get(this.SERVER + '/api/news?news_id=' + params);
+  }
+
+  // 댓글 관리 ---------------------------------------------------------------------------------------------------------
+  findComment(params: any) {
+    return this.http.get(this.SERVER + '/api/comment?news_id=' + params);
+  }
+
+  addComment(params: any) {
+    return this.http.post(this.SERVER + '/api/comment', JSON.stringify(params), {headers: this.headers});
+  }
+
+  modifyComment(params: any) {
+    return this.http.put(this.SERVER + '/api/comment', JSON.stringify(params), {headers: this.headers});
+  }
+
+  removeComment(params: any) {
+    return this.http.delete(this.SERVER + '/api/comment?comment_id=' + params);
   }
 
 /*  private extractData(res: Response) {

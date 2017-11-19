@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import {
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule,
+  MatMenuModule,
   MatPaginatorModule,
   MatSnackBarModule,
   MatToolbarModule
@@ -22,7 +22,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { HighlightDirective } from './highlight.directive';
 import {MyDatePipe} from './my.date.pipe';
 import { LoginComponent } from './auth/login/login.component';
-import {AngularFireAuth, AngularFireAuthModule} from "angularfire2/auth";
+import {AngularFireAuth} from "angularfire2/auth";
 import {AngularFireModule} from "angularfire2";
 import {environment} from "../environments/environment";
 import {AuthGuardService} from "./auth/auth-guard.service";
@@ -31,6 +31,7 @@ import { NicknameComponent } from './nickname/nickname.component';
 import { NewsComponent } from './news/news.component';
 import { ViewComponent } from './news/view/view.component';
 import { CommentComponent } from './comment/comment.component';
+import {CommentDialogComponent} from "./comment/comment.dialog.component";
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { CommentComponent } from './comment/comment.component';
     NicknameComponent,
     NewsComponent,
     ViewComponent,
-    CommentComponent
+    CommentComponent,
+    CommentDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -66,9 +68,11 @@ import { CommentComponent } from './comment/comment.component';
     MatInputModule,
     MatCheckboxModule,
     MatSnackBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
   providers: [UserService, AngularFireAuth, AuthGuardService],
+  entryComponents: [CommentDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
