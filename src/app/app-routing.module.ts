@@ -6,6 +6,8 @@ import {NgModule} from "@angular/core";
 import {AngularComponent} from "./angular/angular.component";
 import {LoginComponent} from "./auth/login/login.component";
 import {RegisterComponent} from "./auth/register/register.component";
+import {NicknameComponent} from "./nickname/nickname.component";
+import {AuthGuardService} from "./auth/auth-guard.service";
 
 const routes: Routes = [
   { path: '', component: IndexComponent, children: [
@@ -14,6 +16,7 @@ const routes: Routes = [
     { path: 'angular', component: AngularComponent},
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
+    { path: 'nickname', component: NicknameComponent, canActivate: [AuthGuardService]},
   ]},
   // 참고: 향후 관리자 생성 모듈
   { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule'},

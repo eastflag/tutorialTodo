@@ -14,3 +14,5 @@ let result1 = [...array1, ...array2, ...array3];
 let sum=0;
 result1.forEach(item => sum += item);
 console.log(sum);
+
+console.log(result1.reduce((prev, curr) => prev+curr));
