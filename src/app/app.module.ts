@@ -29,6 +29,7 @@ import {AuthGuardService} from "./auth/auth-guard.service";
 import { RegisterComponent } from './auth/register/register.component';
 import { NicknameComponent } from './nickname/nickname.component';
 import { NewsComponent } from './news/news.component';
+import { ViewComponent } from './news/view/view.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { NewsComponent } from './news/news.component';
     LoginComponent,
     RegisterComponent,
     NicknameComponent,
-    NewsComponent
+    NewsComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,
