@@ -3,8 +3,6 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../environments/environment";
 import {TodoVO} from "./domain/todo.vo";
 import {MemberVO} from "./domain/member.vo";
-import {ResultVO} from "./domain/result.vo";
-import {CommentVO} from "./domain/comment.vo";
 
 @Injectable()
 export class UserService {
@@ -61,15 +59,27 @@ export class UserService {
   }
 
   addComment(params: any) {
-    return this.http.post(this.SERVER + '/api/comment', JSON.stringify(params), {headers: this.headers});
+    let header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    });
+    return this.http.post(this.SERVER + '/member/api/comment', JSON.stringify(params), {headers: header, observe: 'response'});
   }
 
   modifyComment(params: any) {
-    return this.http.put(this.SERVER + '/api/comment', JSON.stringify(params), {headers: this.headers});
+    let header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    });
+    return this.http.put(this.SERVER + '/member/api/comment', JSON.stringify(params), {headers: header, observe: 'response'});
   }
 
   removeComment(params: any) {
-    return this.http.delete(this.SERVER + '/api/comment?comment_id=' + params);
+    let header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    });
+    return this.http.delete(this.SERVER + '/member/api/comment?comment_id=' + params, {headers: header, observe: 'response'});
   }
 
 /*  private extractData(res: Response) {

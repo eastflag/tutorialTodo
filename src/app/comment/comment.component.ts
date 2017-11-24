@@ -1,9 +1,10 @@
+///<reference path="../../../node_modules/@angular/common/http/src/response.d.ts"/>
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation} from '@angular/core';
 import {CommentVO} from "../domain/comment.vo";
 import {AuthGuardService} from "../auth/auth-guard.service";
 import {UserService} from "../user.service";
 import {PlatformLocation} from "@angular/common";
-import {MatDialog, MatSnackBar} from "@angular/material";
+import {MatDialog, MatDialogConfig, MatSnackBar, MatSnackBarConfig} from "@angular/material";
 import {ResultVO} from "../domain/result.vo";
 import {CommentDialogComponent} from "./comment.dialog.component";
 
@@ -19,7 +20,7 @@ export class CommentComponent implements OnChanges {
   news_id: number;
 
   newComment: CommentVO = new CommentVO();
-  commentList: Array<CommentVO >;
+  commentList: Array<CommentVO>;
 
   constructor(private userService: UserService, private authService: AuthGuardService,
               private location: PlatformLocation, private snackBar: MatSnackBar, private dialog: MatDialog) {
@@ -33,7 +34,9 @@ export class CommentComponent implements OnChanges {
 
   getCommentList() {
     this.userService.findComment(this.news_id)
-      .subscribe((res: Array<CommentVO >) => this.commentList = res);
+      .subscribe((res: Array<CommentVO>) => {
+        this.commentList = res;
+      });
   }
 
   // textarea에 포커스가 오면 로그인을 체크한다. 완료시에 체크하면 입력된 내용을 저장했다 꺼내기가 번거롭다.
@@ -45,9 +48,9 @@ export class CommentComponent implements OnChanges {
 
   saveComment() {
     if (!this.newComment.content) {
-      this.snackBar.open('댓글을 입력하세요.', null, {
-        duration: 3000
-      });
+      let config = new MatSnackBarConfig();
+      config.duration = 3000;
+      this.snackBar.open('댓글을 입력하세요.', null, config);
       return;
     }
 
@@ -56,8 +59,8 @@ export class CommentComponent implements OnChanges {
 
     console.log(this.newComment);
     this.userService.addComment(this.newComment)
-      .subscribe((res: ResultVO) => {
-        if (res.result === 0) {
+      .subscribe(res => {
+        if (res.body['result'] === 0) {
           this.newComment.content = null;
           this.getCommentList();
         }
@@ -65,15 +68,15 @@ export class CommentComponent implements OnChanges {
   }
 
   confirmDelete(comment: CommentVO) {
-    let dialogRef = this.dialog.open(CommentDialogComponent, {
-      data: {content: '삭제하시겠습니까?'}
-    });
+    let config = new MatDialogConfig();
+    config.data = {content: '삭제하시겠습니까?'};
+    let dialogRef = this.dialog.open(CommentDialogComponent, config);
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) { // 삭제하기
         this.userService.removeComment(comment.comment_id)
-          .subscribe((res: ResultVO) => {
-            if (res.result === 0) {
+          .subscribe(res => {
+            if (res.body['result'] === 0) {
               this.getCommentList();
             }
           });
