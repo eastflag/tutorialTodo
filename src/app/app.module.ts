@@ -69,7 +69,7 @@ import {CommentDialogComponent} from "./comment/comment.dialog.component";
     MatCheckboxModule,
     MatSnackBarModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [UserService, AngularFireAuth, AuthGuardService],
   entryComponents: [CommentDialogComponent],
