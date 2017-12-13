@@ -48,7 +48,7 @@ export class AdminService {
     // headers.append("Authorization", "Bearer " + sessionStorage.getItem("admin_token"));
     headers.append('Accept', 'application/json');
 
-    return this.http.post(this.SERVER + '/api/imageUpload', formData, {headers: headers})
+    return this.http.post('http://www.javabrain.kr:8080' + '/api/imageUpload', formData, {headers: headers})
       .toPromise();
   }
 }
