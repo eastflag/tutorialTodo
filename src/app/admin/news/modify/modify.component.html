@@ -7,7 +7,8 @@
       <input matInput placeholder="제목" [(ngModel)]="news.title">
     </mat-form-field>
     <div>
-      <ckeditor [(ngModel)]="news.content" debounce="10">
+      <ckeditor [(ngModel)]="news.content" [config]="ckeditorConfig" debounce="500">
+        <p>wait for loading ...</p>
       </ckeditor>
     </div>
     <div>

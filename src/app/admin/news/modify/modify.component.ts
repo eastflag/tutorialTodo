@@ -16,6 +16,13 @@ export class ModifyComponent implements OnInit {
 
   fileList: FileList;
 
+  ckeditorConfig = {
+    allowedContent: true,
+    extraAllowedContent: '[id]',
+    // protectedSource: /<i[^>]></i>*id/g,
+    height: 500
+  };
+
   constructor(private route: ActivatedRoute, private adminService: AdminService, private router: Router,
               private snackBar: MatSnackBar) {
   }
