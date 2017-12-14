@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TodoVO} from "../domain/todo.vo";
 import {UserService} from "../user.service";
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {animate, keyframes, state, style, transition, trigger} from "@angular/animations";
 import {ResultVO} from "../domain/result.vo";
 
 @Component({
@@ -11,14 +11,29 @@ import {ResultVO} from "../domain/result.vo";
   encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('flyInOut', [
-      state('in', style({transform: 'translate(0, 0)'})),
-      transition('void => *', [
-        style({transform: 'translate(-100%, 0)'}),
+      state('in', style({opacity: 1, transform: 'translate(0, 0)'})),
+      state('active', style({opacity: 1, transform: 'scale(1, 1.3)'})),
+      transition('void => in', [
+        style({opacity: 0, transform: 'translate(-100%, 0)'}),
         animate(300)
       ]),
-      transition('* => void', [
-        animate(300, style({transform: 'translate(100%, 0)', opacity: '0'}))
-      ])
+      transition('in => void', [
+        // animate(300, style({transform: 'translate(100%, 0)', opacity: '0'}))
+        // multi frame transition
+        animate(300, keyframes([
+          style({opacity: 1, transform: 'translateX(0)',     offset: 0}),
+          style({opacity: 1, transform: 'translateX(-50px)', offset: 0.7}),
+          style({opacity: 0, transform: 'translateX(100%)',  offset: 1.0})
+        ]))
+      ]),
+      // 선택시 애니메이션
+      transition('void => active', [
+        animate(600, keyframes([
+          style({transform: 'scale(1, 1)',     offset: 0}),
+          style({transform: 'scale(1, 1)',     offset: 0.5}),
+          style({transform: 'scale(1, 1.3)',  offset: 1.0})
+        ]))
+      ]),
     ])
   ]
 })
