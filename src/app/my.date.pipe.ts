@@ -6,9 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class MyDatePipe implements PipeTransform {
 
   transform(value: string): string {
-    const date = new Date();
+/*    const date = new Date();
     return date.getFullYear() + "-" + (this.addZero(date.getMonth() + 1)) + "-" + this.addZero(date.getDate()) + " "
-      + this.addZero(date.getHours()) + ":" + this.addZero(date.getMinutes()) + ":" + this.addZero(date.getSeconds());
+      + this.addZero(date.getHours()) + ":" + this.addZero(date.getMinutes()) + ":" + this.addZero(date.getSeconds());*/
+    return value.substring(0, 16);
   }
 
   addZero(digit: number): string {

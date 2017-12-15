@@ -57,8 +57,8 @@
           <td [class.todo_canceled]="item.isFinished">
             <input [(ngModel)]="item.todo">
           </td>
-          <td>{{item.created}}</td>
-          <td>{{item.updated}}</td>
+          <td>{{item.created | myDate}}</td>
+          <td>{{item.updated | date: 'yyyy-MM-dd HH:mm'}}</td>
           <td>
             <button mat-raised-button color="accent" (click)="modify(item)">저장</button>
             <button mat-raised-button color="warn" (click)="restore(item)">취소</button>
