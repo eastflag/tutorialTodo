@@ -1,3 +1,7 @@
+// npm install -g typescript
+// tsc -v;
+// tsc xxxx.ts
+
 import {Observable} from "rxjs";
 
 // observable: stream of data

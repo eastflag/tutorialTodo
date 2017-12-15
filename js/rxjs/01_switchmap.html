@@ -25,6 +25,8 @@
       .subscribe(x => console.log(x)));*/
 
   // switchMap을 이용해서 flow를 다른 flow로 switch한다.
+  // 아래 그림 이해
+  // http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switchMap
   Rx.Observable.fromEvent(startBtn, 'click')
     .switchMap((event) => Rx.Observable.interval(1000))
       .subscribe(x => console.log(x));
