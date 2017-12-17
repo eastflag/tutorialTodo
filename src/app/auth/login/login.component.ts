@@ -1,10 +1,11 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import * as firebase from "firebase";
 import {AngularFireAuth} from "angularfire2/auth";
 import {Router} from "@angular/router";
 import {MemberVO} from "../../domain/member.vo";
 import {AuthGuardService} from "../auth-guard.service";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-login',
@@ -12,14 +13,19 @@ import {AuthGuardService} from "../auth-guard.service";
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  private authSub: Subscription;
+
   member = new MemberVO();
   authState: Observable<firebase.User>;
   currentUser: firebase.User = null;
 
   constructor(public afAuth: AngularFireAuth, private router: Router, private authGuard: AuthGuardService) {
     this.authState = this.afAuth.authState;
-    this.authState.subscribe(user => {
+  }
+
+  ngOnInit() {
+     this.authSub = this.authState.subscribe(user => {
       if (user) {
         // 로그인이 성공하면 호출 or 로그인 상태에서 다른 페이지 들어갔다가 들어와도 호출.
         this.currentUser = user;
@@ -34,7 +40,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnDestroy(): void {
+    this.authSub.unsubscribe();
+    this.afAuth.auth.signOut();
   }
 
   signupWithPassword() {

@@ -2,15 +2,15 @@
   <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item routerLink="/jquery">
-      <mat-icon>input</mat-icon>
+      <mat-icon>track_changes</mat-icon>
       <span>jquery</span>
     </button>
     <button mat-menu-item routerLink="/angular">
-      <mat-icon>input</mat-icon>
+      <mat-icon>change_history</mat-icon>
       <span>angular</span>
     </button>
     <button mat-menu-item routerLink="/news">
-      <mat-icon>input</mat-icon>
+      <mat-icon>fiber_new</mat-icon>
       <span>news</span>
     </button>
   </mat-menu>
@@ -27,11 +27,11 @@
       <span>로그인</span>
     </button>
     <button mat-menu-item (click)="authService.logOut()" *ngIf="authService.isAuthenticated()">
-      <mat-icon>input</mat-icon>
+      <mat-icon>power_settings_new</mat-icon>
       <span>로그아웃</span>
     </button>
     <button mat-menu-item routerLink="/nickname">
-      <mat-icon>input</mat-icon>
+      <mat-icon>shuffle</mat-icon>
       <span>닉네임변경</span>
     </button>
   </mat-menu>
