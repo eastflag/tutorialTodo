@@ -62,6 +62,7 @@ export class CommentComponent implements OnChanges {
       .subscribe(res => {
         if (res.body['result'] === 0) {
           this.newComment.content = null;
+          localStorage.setItem('token', res.headers['refresh_token']);
           this.getCommentList();
         }
       });
