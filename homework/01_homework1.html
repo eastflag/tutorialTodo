@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>form validation</title>
+</head>
+<body>
+<form name="forn" action="#">
+  <label for="name">이름</label>
+  <input id="name">
+  <br>
+  <label for="nickname">전화번호</label>
+  <input id="nickname">
+  <br>
+  <label for="myemail">이메일</label>
+  <input id="myemail">
+  <br>
+  <label for="myage">나이</label>
+  <input type="number" id="myage">
+  <br>
+  <input type="submit" id="send" value="전송">
+</form>
+</body>
+</html>
+
+<!--크롬에서 실행하여 submit 버튼을 누를경우,
+이름: 생략할 경우 "이 입력란을 작성하세요."
+전화번호: 10자리이상 숫자가 아닐 경우 "요청한 형식과 일치시키시오
+이메일: 이메일 형식이 아닐경우 "이메일 형식과 일치시키시오"
+나이: 125 이상 값을 입력할 경우 "값은 125 이하여야 합니다"
+위와 같이 나오도록 html property로만 작성하시오.
+Hint: requried, pattern, type, max 이용-->

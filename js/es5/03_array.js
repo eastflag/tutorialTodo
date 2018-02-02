@@ -60,20 +60,17 @@ books.forEach(function (item) {
 console.log('forEach sum:' + sum);
 
 
-// 11. 제목앞에 판매순위를 등수를 붙인 새로운 배열을 생성하시오.(힌트: map)
+// 11. 제목앞에 판매순위를 등수를 붙인("콩쥐팥쥐" => "1등 콩쥐팥쥐") 새로운 배열을 생성 하시오.(힌트: map)
+// 이때, 기존 배열과 비교시 값이 같은가? 다른가?
 console.log('11 -------------------------------------------------------------------');
 var newMap = books.map(function (item) {
-  if(item.order <= 3) {
     item.title = item.order + '등 ' + item.title;
     return item;
-  } else {
-    return item;
-  }
 });
 console.log(newMap);
 
 
-// 12. 새로운 배열을 만들되 3등안에 있는것만 따로 만든다. (힌트: filter)
+// 12. 3등안에 있는것만 걸러서 별도의 배열을 만드시오 (힌트: filter)
 console.log('12 -------------------------------------------------------------------');
 var newFilter = books.filter(function (item) {
   if(item.order <= 3) {
