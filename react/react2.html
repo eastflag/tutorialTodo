@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello World</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  // 1. 콘텐츠를 코드로 넣는 방법: {코드}
+  // 2. 속성을 코드로 넣는 방법: title={코드}
+  // 3. 스타일 style={객체} :: background-color => backgroundColor
+
+  const str = "Hello";
+  const customStyle = {
+    color: "red",
+    textAlign: "center"
+  };
+
+  const element = (
+    <h1 title={str} style={customStyle}>{str} World</h1>
+  );
+  const root = document.getElementById('root');
+
+  ReactDOM.render(element, root);
+
+</script>
+<!--
+  Note: this page is a great way to try React but it's not suitable for production.
+  It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+  To set up a production-ready React build environment, follow these instructions:
+  * https://reactjs.org/docs/add-react-to-a-new-app.html
+  * https://reactjs.org/docs/add-react-to-an-existing-app.html
+
+  You can also use React without JSX, in which case you can remove Babel:
+  * https://reactjs.org/docs/react-without-jsx.html
+  * https://reactjs.org/docs/cdn-links.html
+-->
+</body>
+</html>
