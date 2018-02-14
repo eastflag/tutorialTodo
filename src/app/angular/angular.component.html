@@ -26,45 +26,41 @@
 
     <hr>
 
-    <table class="table">
-      <thead>
-      <tr>
-        <th>완료</th>
-        <th>todo</th>
-        <th>생성일</th>
-        <th>수정일</th>
-        <th>삭제</th>
-      </tr>
-      </thead>
-      <tbody>
+    <div class="table">
+      <div class="tr">
+        <div class="th">완료</div>
+        <div class="th">todo</div>
+        <div class="th">생성일</div>
+        <div class="th">수정일</div>
+        <div class="th">삭제</div>
+      </div>
       <ng-template ngFor let-item [ngForOf]="todoList">
-        <tr *ngIf="!item.isEdited" [@flyInOut] = "'in'" appHighlight [highlightColor]="'#C8FFFF'">
-          <td>
+        <div class="tr" tr *ngIf="!item.isEdited" [@flyInOut] = "'in'" appHighlight [highlightColor]="'#C8FFFF'">
+          <div class="td">
             {{item.isFinished ? '완료' : '미완료'}}
-          </td>
-          <td [class.todo_canceled]="item.isFinished">{{item.todo}}</td>
-          <td>{{item.created | myDate}}</td>
-          <td>{{item.updated | date: 'yyyy-MM-dd HH:mm'}}</td>
-          <td>
+          </div>
+          <div class="td" [class.todo_canceled]="item.isFinished">{{item.todo}}</div>
+          <div class="td">{{item.created | myDate}}</div>
+          <div class="td">{{item.updated | date: 'yyyy-MM-dd HH:mm'}}</div>
+          <div class="td">
             <button mat-raised-button color="accent" (click)="save(item)">수정</button>
             <button mat-raised-button color="warn" (click)="remove(item)">삭제</button>
-          </td>
-        </tr>
-        <tr *ngIf="item.isEdited" [@flyInOut] = "'active'">
-          <td>
+          </div>
+        </div>
+        <tr class="tr" *ngIf="item.isEdited" [@flyInOut] = "'active'">
+          <div class="td">
             <input type="checkbox" [(ngModel)]="item.isFinished">
-          </td>
-          <td [class.todo_canceled]="item.isFinished">
+          </div>
+          <div class="td" [class.todo_canceled]="item.isFinished">
             <input [(ngModel)]="item.todo">
-          </td>
-          <td>{{item.created | myDate}}</td>
-          <td>{{item.updated | date: 'yyyy-MM-dd HH:mm'}}</td>
-          <td>
+          </div>
+          <div class="td">{{item.created | myDate}}</div>
+          <div class="td">{{item.updated | date: 'yyyy-MM-dd HH:mm'}}</div>
+          <div class="td">
             <button mat-raised-button color="accent" (click)="modify(item)">저장</button>
             <button mat-raised-button color="warn" (click)="restore(item)">취소</button>
-          </td>
+          </div>
       </ng-template>
-      </tbody>
-    </table>
+    </div>
   </mat-card-content>
 </mat-card>

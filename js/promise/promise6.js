@@ -19,7 +19,7 @@ async1(0)
     .then(value=> console.log('resolve2:', value))
     .catch(value=> console.log('error2:', value));
 
-async1(0)
+async1(1)
     .then(value=> {
         console.log('resolve3:' + value);
         JSON.parse(value);
