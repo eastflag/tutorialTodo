@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin/admin.component';
 import { NewsComponent } from './news/news.component';
 import { HomeComponent } from './home/home.component';
-import {AdminRoutingModule} from "./admin-routing";
+import {adminRoutes} from "./admin-routing";
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule,
   MatPaginatorModule, MatSnackBar,
@@ -18,14 +18,15 @@ import {FormsModule} from "@angular/forms";
 import {CKEditorModule} from "ng2-ckeditor";
 import { ModifyComponent } from './news/modify/modify.component';
 import {ViewDialogComponent} from "./news/view/view.dialog.component";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
     CommonModule,
-    AdminRoutingModule,
     FormsModule,
     FlexLayoutModule,
     CKEditorModule,
+    RouterModule.forChild(adminRoutes),
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,

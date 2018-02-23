@@ -5,10 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class MyDatePipe implements PipeTransform {
 
-  transform(value: string): string {
-/*    const date = new Date();
+  transform(value: any, ...args: any[]): any {
+    /*    const date = new Date();
     return date.getFullYear() + "-" + (this.addZero(date.getMonth() + 1)) + "-" + this.addZero(date.getDate()) + " "
       + this.addZero(date.getHours()) + ":" + this.addZero(date.getMinutes()) + ":" + this.addZero(date.getSeconds());*/
+    console.log(args);
     return value.substring(0, 16);
   }
 

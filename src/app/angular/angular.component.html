@@ -26,8 +26,8 @@
 
     <hr>
 
-    <div class="table">
-      <div class="tr">
+    <div class="table mt-1">
+      <div class="thead tr">
         <div class="th">완료</div>
         <div class="th">todo</div>
         <div class="th">생성일</div>
@@ -35,19 +35,19 @@
         <div class="th">삭제</div>
       </div>
       <ng-template ngFor let-item [ngForOf]="todoList">
-        <div class="tr" tr *ngIf="!item.isEdited" [@flyInOut] = "'in'" appHighlight [highlightColor]="'#C8FFFF'">
+        <div class="tbody tr" *ngIf="!item.isEdited" [@flyInOut] = "'in'" appHighlight [highlightColor]="'#C8FFFF'">
           <div class="td">
             {{item.isFinished ? '완료' : '미완료'}}
           </div>
           <div class="td" [class.todo_canceled]="item.isFinished">{{item.todo}}</div>
-          <div class="td">{{item.created | myDate}}</div>
+          <div class="td">{{item.created | myDate: 'aaa'}}</div>
           <div class="td">{{item.updated | date: 'yyyy-MM-dd HH:mm'}}</div>
           <div class="td">
             <button mat-raised-button color="accent" (click)="save(item)">수정</button>
             <button mat-raised-button color="warn" (click)="remove(item)">삭제</button>
           </div>
         </div>
-        <tr class="tr" *ngIf="item.isEdited" [@flyInOut] = "'active'">
+        <div class="tbody tr" *ngIf="item.isEdited" [@flyInOut] = "'active'">
           <div class="td">
             <input type="checkbox" [(ngModel)]="item.isFinished">
           </div>
@@ -60,6 +60,7 @@
             <button mat-raised-button color="accent" (click)="modify(item)">저장</button>
             <button mat-raised-button color="warn" (click)="restore(item)">취소</button>
           </div>
+        </div>
       </ng-template>
     </div>
   </mat-card-content>

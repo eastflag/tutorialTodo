@@ -92,9 +92,10 @@ export class AngularComponent implements OnInit {
   save(todoVo: TodoVO) {
     todoVo.isEdited = true;
 
-    let tempTodo = new TodoVO();
-    tempTodo.isFinished = todoVo.isFinished;
-    tempTodo.todo = todoVo.todo;
+    // let tempTodo = new TodoVO();
+    // tempTodo.isFinished = todoVo.isFinished;
+    // tempTodo.todo = todoVo.todo;
+    const tempTodo = Object.assign({}, todoVo);
     this.tempTodoList.set(todoVo.todo_id, tempTodo);
   }
 
