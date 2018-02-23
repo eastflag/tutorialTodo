@@ -5,7 +5,8 @@ import { NewsComponent } from './news/news.component';
 import { HomeComponent } from './home/home.component';
 import {adminRoutes} from "./admin-routing";
 import {
-  MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule,
+  MatButtonModule, MatCardModule, MatDialogModule, MatExpansionModule, MatFormFieldModule, MatIconModule,
+  MatInputModule,
   MatPaginatorModule, MatSnackBar,
   MatSnackBarModule,
   MatToolbarModule
@@ -36,6 +37,7 @@ import {RouterModule} from "@angular/router";
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatExpansionModule,
   ],
   declarations: [AdminComponent, NewsComponent, HomeComponent, WriteComponent, ViewComponent, ModifyComponent, ViewDialogComponent],
   providers: [AdminService],
