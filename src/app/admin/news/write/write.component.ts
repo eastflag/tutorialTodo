@@ -64,7 +64,7 @@ export class WriteComponent implements OnInit {
           // 이미지 경로를  editor에 추가한다.
           console.log(res['value']);
           if (this.news.content) {
-            this.news.content += `<img src="http://www.javabrain.kr${res['value']} style="max-width: 100%;"">`;
+            this.news.content += `<img src="http://www.javabrain.kr${res['value']}" style="max-width: 100%;">`;
           } else {
             this.news.content = `<img src="http://www.javabrain.kr${res['value']}" style="max-width: 100%;">`;
           }
