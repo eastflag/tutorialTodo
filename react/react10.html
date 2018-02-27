@@ -10,30 +10,56 @@
 <body>
 <div id="root"></div>
 <script type="text/babel">
-  // 16강 본격적으로 컴포넌트 만들기 - 상태
-  class TestA extends React.Component {
-    constructor(props, context, updater) {
-      super(props, context, updater);
+  // 17강 이벤트
 
-      // 상태: 화면에 출력하고 싶은것
-      this.state = { text: 'hello'};
-      setTimeout(()=> {
-        this.setState({text: 'bye'})
-      }, 3000);
-      // this.state.<key> // 상태 추출
-      // this.setState({<key>: <value>}) // 상태를 변경 + render() + 화면에 반영
+  //상태를 가진 컴포넌트를 정의
+  class CBox extends React.Component{
+    constructor(props) {
+      super(props);
+      this.state = {
+        checked: false
+      }
     }
-
-    // hello에서 3초후 bye로 전환하기
+    clickHandler(e) {
+      const newValue = !this.state.checked;
+      this.setState({
+        checked: newValue
+      });
+    }
     render() {
-      return <h1>{this.state.text}</h1>
+      //체크되지 않았을태
+      let mark = 'ㅁ';
+      let bstyle = {
+        fontWeight: 'normal'
+      };
+      //체크돼 있는지 확인
+      if (this.state.checked) {
+        mark = '*';
+        bstyle = {
+          fontWeight: 'bold'
+        }
+      }
+
+      //렌더링할 내용을 반환
+      return (
+        <div onClick={e => this.clickHandler(e)} style={bstyle}>
+          {mark} {this.props.label}
+        </div>
+      )
     }
   }
 
-  const element = <TestA></TestA>
-  const root = document.getElementById('root');
 
-  ReactDOM.render(element, root);
+  const dom = <div>
+    <CBox label="Apple" />
+    <CBox label="Banana" />
+    <CBox label="Orange" />
+    <CBox label="Mango" />
+  </div>
+
+
+  const root = document.getElementById('root');
+  ReactDOM.render(dom, root);
 
 </script>
 <!--
