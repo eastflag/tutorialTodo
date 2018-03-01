@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule,
-  MatMenuModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule,
+  MatIconModule, MatInputModule,
+  MatMenuModule, MatNativeDateModule,
   MatPaginatorModule,
   MatSnackBarModule,
   MatToolbarModule
@@ -16,7 +17,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { AngularComponent } from './angular/angular.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UserService} from "./user.service";
 import {HttpClientModule} from "@angular/common/http";
 import { HighlightDirective } from './highlight.directive';
@@ -55,6 +56,7 @@ import {CommentDialogComponent} from "./comment/comment.dialog.component";
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     FlexLayoutModule,
@@ -70,6 +72,8 @@ import {CommentDialogComponent} from "./comment/comment.dialog.component";
     MatSnackBarModule,
     MatPaginatorModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [UserService, AngularFireAuth, AuthGuardService],
   entryComponents: [CommentDialogComponent],

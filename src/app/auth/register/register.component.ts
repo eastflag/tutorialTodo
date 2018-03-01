@@ -1,10 +1,15 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewEncapsulation} from '@angular/core';
 import {MemberVO} from "../../domain/member.vo";
 import {UserService} from "../../user.service";
 import {AuthGuardService} from "../auth-guard.service";
 import {Router} from "@angular/router";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
 import {ResultVO} from "../../domain/result.vo";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+
+declare var $: any ;
+declare var postcodify: any;
+const url = "//d1p7wdleee1q2z.cloudfront.net/post/search.min.js";
 
 @Component({
   selector: 'app-register',
@@ -18,29 +23,45 @@ export class RegisterComponent implements OnInit {
   isInfo = false;
   config: MatSnackBarConfig;
 
+  public form: FormGroup;
+
   constructor(private snackBar: MatSnackBar, private userService: UserService, private authGuard: AuthGuardService
-    , private router: Router) {
+    , private router: Router, private fb: FormBuilder, public el: ElementRef) {
     this.config = new MatSnackBarConfig();
     this.config.duration = 3000;
+
+    this.form = this.fb.group({
+      nickname: new FormControl(null, [Validators.required, Validators.minLength(4)]),
+      isTerm: new FormControl(null, [Validators.required]),
+      isInfo: new FormControl(null, [Validators.required]),
+      postcode: new FormControl(null),
+      address: new FormControl(null),
+      birthday: new FormControl(null),
+    });
   }
 
   ngOnInit() {
     this.member = JSON.parse(localStorage.getItem('member'));
+
+    $("#postcode").postcodifyPopUp();
   }
 
   register() {
-    if (!this.member.nickname) {
-      this.snackBar.open('닉네임을 입력하세요.', null, this.config);
-      return;
-    }
+    this.form.controls['postcode'].setValue($('.postcodify_postcode5').val());
+    this.form.controls['address'].setValue($('.postcodify_address').val());
 
-    if (!this.isTerm) {
+    if (!this.form.controls['isTerm'].value) {
       this.snackBar.open('이용약관에 동의하세요.', null, this.config);
       return;
     }
 
-    if (!this.isInfo) {
+    if (!this.form.controls['isInfo'].value) {
       this.snackBar.open('개인정보이용에 동의하세요.', null, this.config);
+      return;
+    }
+
+    if (!this.form.valid) {
+      this.snackBar.open('붉은색 부분을 확인하세요.', null, {duration: 2000});
       return;
     }
 
@@ -62,5 +83,4 @@ export class RegisterComponent implements OnInit {
         }
       });
   }
-
 }
