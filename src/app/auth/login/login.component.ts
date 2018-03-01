@@ -2,10 +2,11 @@ import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import * as firebase from "firebase";
 import {AngularFireAuth} from "angularfire2/auth";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MemberVO} from "../../domain/member.vo";
 import {AuthGuardService} from "../auth-guard.service";
 import {Subscription} from "rxjs/Subscription";
+import {UserService} from "../../user.service";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   authState: Observable<firebase.User>;
   currentUser: firebase.User = null;
 
-  constructor(public afAuth: AngularFireAuth, private router: Router, private authGuard: AuthGuardService) {
+  naverUrl: string;
+
+  constructor(public afAuth: AngularFireAuth, private router: Router, private authGuard: AuthGuardService,
+              private userService: UserService, private route: ActivatedRoute) {
     this.authState = this.afAuth.authState;
   }
 
@@ -36,6 +40,33 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.authGuard.login(this.member);
       } else {
         this.currentUser = null;
+      }
+    });
+
+    // naver login url 얻기
+    this.userService.getSocial("naver2")
+      .subscribe(value => {
+        this.naverUrl = value['url'];
+      });
+
+    // 로그인 결과의 토큰이 오는지 체크
+    this.route.queryParams.subscribe(params => {
+      let result = +params['result'];
+      if (result === 0) { // 로그인 성공, 회원정보 있음
+        console.log('login success:' + params['token']);
+        localStorage.setItem('token', params['token']);
+        if (this.authGuard.redirectUrl) {
+          this.router.navigateByUrl(this.authGuard.redirectUrl);
+        } else {
+          this.router.navigateByUrl('/');
+        }
+      } else if (result === 100) { // 로그인 실패. 회원 정보 없음
+        console.log('login fail');
+        this.member.join_path = params['join_path'];
+        this.member.email = params['email'];
+        this.member.photo_url = params['photo_url'];
+        localStorage.setItem('member', JSON.stringify(this.member));
+        this.router.navigateByUrl('/register');
       }
     });
   }

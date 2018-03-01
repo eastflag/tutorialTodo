@@ -25,6 +25,10 @@
       <button mat-raised-button color="accent" (click)="loginWithGoogle()">
         Login with Google
       </button>
+
+      <div class="mt-1">
+        <a [href]="naverUrl" *ngIf="naverUrl"><img src="/assets/images/naver.png" style="max-width: 100%;"></a>
+      </div>
     </mat-card-content>
 
   </mat-card>

@@ -82,6 +82,11 @@ export class UserService {
     return this.http.delete(this.SERVER + '/member/api/comment?comment_id=' + params, {headers: header, observe: 'response'});
   }
 
+  // social login  -----------------------------------------------------------------------------------------------------
+  getSocial(site: string) {
+    return this.http.get(this.SERVER + '/api/social?site=' + site);
+  }
+
 /*  private extractData(res: Response) {
     console.log(res);
     const body = res.json();

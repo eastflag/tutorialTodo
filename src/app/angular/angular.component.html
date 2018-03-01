@@ -29,7 +29,7 @@
     <div class="table mt-1">
       <div class="thead tr">
         <div class="th">완료</div>
-        <div class="th">todo</div>
+        <div class="th" fxFlex="30">todo</div>
         <div class="th">생성일</div>
         <div class="th">수정일</div>
         <div class="th">삭제</div>
@@ -39,7 +39,7 @@
           <div class="td">
             {{item.isFinished ? '완료' : '미완료'}}
           </div>
-          <div class="td" [class.todo_canceled]="item.isFinished">{{item.todo}}</div>
+          <div class="td" [class.todo_canceled]="item.isFinished" fxFlex="30">{{item.todo}}</div>
           <div class="td">{{item.created | myDate: 'aaa'}}</div>
           <div class="td">{{item.updated | date: 'yyyy-MM-dd HH:mm'}}</div>
           <div class="td">
