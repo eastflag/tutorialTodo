@@ -19,7 +19,9 @@
   <span style="flex: 1 1 auto"></span>
 
   <button mat-button [matMenuTriggerFor]="login_menu">
-    <mat-icon>person</mat-icon><span *ngIf="!authService.isAuthenticated()">로그인</span><span *ngIf="authService.isAuthenticated()">로그아웃</span>
+    <mat-icon>person</mat-icon>
+    <span *ngIf="!authService.isAuthenticated()">로그인</span>
+    <span *ngIf="authService.isAuthenticated()">로그아웃</span>
   </button>
   <mat-menu #login_menu="matMenu">
     <button mat-menu-item routerLink="/login" *ngIf="!authService.isAuthenticated()">

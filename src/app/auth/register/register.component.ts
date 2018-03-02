@@ -65,6 +65,8 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
+    this.member.nickname = this.form.controls['nickname'].value;
+
     this.userService.signUp(this.member)
       .then((res: ResultVO) => {
         if (res.result === 0) {
