@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+  <h1>Hello World</h1>
+  <h2>xxxxxxxxxxx</h2>
+
+  <script>
+    // 이벤트
+    // 1. 강제로 클릭하기
+    // $("h1").click();
+    // 2. 이벤트 핸들러
+    $("h1").click(function (event) {
+      // this == event.currentTarget
+      $(event.currentTarget).html("click!!");
+      $(this).css("color", "red");
+    });
+    // 3. 데이터 속성 넘기기
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+  <h1>Hello World</h1>
+  <h2>xxxxxxxxxxx</h2>
+
+  <script>
+    // 덧붙이기
+    $("<h1></h1>").html("Hello appendTo").appendTo("body"); //태그 내에
+    $("<h1></h1>").html("Hello prependTo").prependTo("body");
+    $("<h1></h1>").html("Hello insertBefore").insertBefore("body"); // 형제 태그
+    $("<h1></h1>").html("Hello insertAfter").insertAfter("body");  //형제 태그
+
+    $("body").append("<h1>append</h1>"); //위와 동일
+
+    // 이동
+    $("h2").appendTo("body");
+  </script>
+</body>
+</html>
