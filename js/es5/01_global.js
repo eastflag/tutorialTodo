@@ -12,3 +12,22 @@ function checkscope(){
 checkscope();
 console.log(name);
 console.log(name2); // 암묵적 global 변수
+
+//출력결과를 예상해보자. 0, 1, 2 가 찍히지 않는 이유가 무엇인가?
+// 해결방법은? 1) let 2) 클로저로 만들기
+for(var i=0; i<3; ++i) {
+  setTimeout(function () {
+    console.log(i);
+  }, 1000);
+}
+
+/*
+for(var i=0; i<3; ++i) {
+  setTimeout(function (x) {
+    return function () {
+      console.log(x);
+    }
+
+  }(i), 1000);
+}
+*/
