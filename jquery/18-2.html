@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      * {margin: 0; padding: 0;}
+      .slider_image {width: 640px;, height: 400px;}
+      li { list-style: none;}
+    </style>
+      <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+      <script>
+          $(document).ready(function () {
+            // 1. 가로로 배치해서 기다란 띠로 만들기
+            // 2. 뷰포트 레이어 구현하여 이미지 하나만 보이게 하기
+            // 3. li 갯수만큼 버튼을 만들고 개발자콘솔에서 해당 이미지로 이동하기 테스트.
+            var length = $(".viewport li").length;
+            var width = 640;
+            var height = 400;
+
+            $(".viewport").css({
+              width: width,
+              height: height,
+              overflow: "hidden"
+            });
+            $(".viewport ul").css("width", width *  length).css("height", height);
+            $(".viewport li").css({
+              width: width,
+              height: height,
+              float: "left"
+            });
+
+            var moveTo = function (index) {
+              // index 디폴트값 지정
+              index = index || 0;
+              index = index%length;
+              // 애니메이션으로 이동하기
+              $(".viewport ul").animate({
+                marginLeft: -width * index
+              }, 1000);
+            };
+
+            // 개발자콘솔에서 테스트하는 방법...
+            window.moveSlider = moveTo;
+
+            for(var i=0; i < length; ++i) {
+/*              $("<button></button>").text(i).click((function (x) {
+                return function() {
+                  moveTo(x);
+                  console.log(x);
+                };
+              })(i)).appendTo("body");*/
+              (function(x) {
+                $("<button></button>").text(i).click(function () {
+                  moveTo(x);
+                  console.log(x);
+                  // [] 혹은 get으로 추출시 제이쿼리 객체가 아니라 노드가 된다.
+                  var node = $(".viewport li").get(x);
+                  var title = $(node).attr("data-title");
+                  $("h1").html(title);
+                  $("h2").html(1+x);
+                }).appendTo("body");
+              })(i)
+            }
+
+            var currentIndex = 0;
+            moveTo(currentIndex);
+
+            setInterval(function () {
+              ++currentIndex;
+              moveTo(currentIndex);
+            }, 2000);
+          });
+      </script>
+  </head>
+  <body>
+    <h1></h1>
+    <h2></h2>
+    <div class="viewport">
+      <ul>
+        <li data-title="AAAAA"><a href="#"><img src="Desert.jpg" class="slider_image"></a></li>
+        <li data-title="BBBBB"><a href="#"><img src="Hydrangeas.jpg" class="slider_image"></a></li>
+        <li data-title="CCCCC"><a href="#"><img src="Jellyfish.jpg" class="slider_image"></a></li>
+        <li data-title="DDDDD"><a href="#"><img src="Koala.jpg" class="slider_image"></a></li>
+        <li data-title="EEEEE"><a href="#"><img src="Lighthouse.jpg" class="slider_image"></a></li>
+      </ul>
+    </div>
+  </body>
+</html>
