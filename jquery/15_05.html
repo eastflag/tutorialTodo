@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+  <script>
+    // 특정한 태그만 찾을때
+    for(var i=0; i<3; ++i) {
+      $("<div></div>")
+        .append("<h1>Hello</h1>")
+        .append("<p>lorem loremloremloremloremloremloremlorem</p>")
+        .appendTo("body")
+        .click(function () {
+          $(this).find("p").css("background-color", "orange");
+        });
+    }
+  </script>
+</body>
+</html>
