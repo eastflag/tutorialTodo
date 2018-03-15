@@ -11,20 +11,26 @@
   <h1>Hello World</h1>
 
   <script>
-    // 1. Setter - jQuery 객체
-    // A. 문자열: 문자열
+    // css, attr, html, text 4가지가 가장 많이 사용된다.
+
+    // 1. Setter - jQuery 객체: 3가지 방법
+    // 1). 문자열: 문자열
     $("h1").css("color", "red");
-    // B. 객체
+    // 2). 객체
     $("h1").css({
       "color": "blue",
       "background-color": "yellow", // backgroundColor: "yellow", 키일때는 캐멀케이스
       "text-align": "center"
     });
-    // C. 함수로 값을 입력: 여러개를 입력 가능
+    // 3). 함수로 값을 입력: 여러개를 입력 가능: h1 태그가 3개이므로 0, 1, 2 가 차례로 입력된다.
     var array = ["red", "blue", "orange"];
     $("h1").css("color", function(index) {
       return array[index];
     });
+
+    // 2. Getter
+    var value = $("h1").css("color");
+    console.log(value);
   </script>
 </body>
 </html>

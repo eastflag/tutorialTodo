@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+  <img />
+  <img />
+  <img />
+
+  <h2></h2>
+  <h2></h2>
+  <h2></h2>
+
+  <script>
+    // 1. attr
+    $("img").attr("src", "http://placehold.it/100x100");
+    $("img").attr({
+      "src": function(index) {
+        return "http://placehold.it/100x" + String((index + 1) * 100);
+      },
+      "alt": "test image"
+    });
+
+    // 2. html : 글자와 태그 모두 가능, text는 글자로 넣는다.
+    $("h2").html("hello world");
+  </script>
+</body>
+</html>

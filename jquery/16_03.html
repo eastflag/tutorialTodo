@@ -11,7 +11,14 @@
 
   <script>
     // 이벤트 : on 사용하기
+    // 현재 생성되지 않고, 나중에 생성되는 h1 태그에도 이벤트를 주는 방법
+    // 내부의 this는 생성되는 this이다.
     // 예제: 무한 스크롤 구현하기, 입력시 글자수 제한하기
+
+    $("body").on("click", "h1", function () {
+      console.log(this);
+      $("<h1></h1>").html("hello").appendTo("body");
+    });
 
   </script>
 </body>

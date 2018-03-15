@@ -19,7 +19,19 @@
       $(event.currentTarget).html("click!!");
       $(this).css("color", "red");
     });
-    // 3. 데이터 속성 넘기기
+    // 3. 데이터 속성 넘기기: 이벤트가 두개 연결되었으므로 2번실행된다.
+    $("h1").click(100, function(event){
+      console.log(event.data); // 100
+    })
+
+    // 복잡한 이벤트 연결 방식
+    $("a").on("click", 100, function (event) {
+      $(this).html("click");
+    };
+
+    $("body").on("click", "h1", function () {
+      $("<h1></h1>").html("Hello").appendTo("body");
+    }
   </script>
 </body>
 </html>
