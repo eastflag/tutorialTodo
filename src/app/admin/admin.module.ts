@@ -11,7 +11,6 @@ import {
   MatSnackBarModule,
   MatToolbarModule
 } from "@angular/material";
-import {FlexLayoutModule} from "@angular/flex-layout";
 import {AdminService} from "./admin.service";
 import { WriteComponent } from './news/write/write.component';
 import {ViewComponent} from './news/view/view.component';
@@ -20,6 +19,7 @@ import {CKEditorModule} from "ng2-ckeditor";
 import { ModifyComponent } from './news/modify/modify.component';
 import {ViewDialogComponent} from "./news/view/view.dialog.component";
 import {RouterModule} from "@angular/router";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   imports: [

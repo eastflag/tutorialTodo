@@ -1,6 +1,9 @@
 body {
   .mat-expansion-panel {
     background: #eeeeee;
+    .mat-expansion-panel-header {
+      height: 48px !important;
+    }
   }
   .mat-expansion-panel-body {
     background: white;
