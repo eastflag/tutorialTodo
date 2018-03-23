@@ -55,4 +55,8 @@ export class JqueryComponent implements OnInit {
       $('#todo_list').append(todo);
     });
   }
+
+  slide() {
+    $('table.table tbody').slideToggle();
+  }
 }
