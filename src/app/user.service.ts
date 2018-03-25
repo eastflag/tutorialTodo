@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {environment} from "../environments/environment";
 import {TodoVO} from "./domain/todo.vo";
 import {MemberVO} from "./domain/member.vo";
+import {Observable} from "rxjs/Observable";
+import {ResultVO} from "./domain/result.vo";
 
 @Injectable()
 export class UserService {
-
+  // 참고: http://han41858.tistory.com/39
   private SERVER: string;
   private headers: HttpHeaders;
 
@@ -58,12 +60,13 @@ export class UserService {
     return this.http.get(this.SERVER + '/api/comment?news_id=' + params);
   }
 
-  addComment(params: any) {
-    let header = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('token')
-    });
-    return this.http.post(this.SERVER + '/member/api/comment', JSON.stringify(params), {headers: header, observe: 'response'});
+  addComment(params: any): Observable<HttpResponse<ResultVO>> {
+    // HttpHeaders는 immutable이기 때문에 set
+    let header = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', localStorage.getItem('token'));
+
+    return this.http.post<ResultVO>(this.SERVER + '/member/api/comment', params, {headers: header, observe: 'response'});
   }
 
   modifyComment(params: any) {

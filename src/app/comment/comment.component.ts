@@ -22,7 +22,7 @@ export class CommentComponent implements OnChanges {
   newComment: CommentVO = new CommentVO();
   commentList: Array<CommentVO>;
 
-  constructor(private userService: UserService, private authService: AuthGuardService,
+  constructor(private userService: UserService, public authService: AuthGuardService,
               private location: PlatformLocation, private snackBar: MatSnackBar, private dialog: MatDialog) {
 
   }
@@ -41,16 +41,14 @@ export class CommentComponent implements OnChanges {
 
   // textarea에 포커스가 오면 로그인을 체크한다. 완료시에 체크하면 입력된 내용을 저장했다 꺼내기가 번거롭다.
   checkLogin() {
-    console.log('onfocus');
+    console.log(this.location.pathname);
     // 로그인 체크
     this.authService.checkLogin(this.location.pathname);
   }
 
   saveComment() {
     if (!this.newComment.content) {
-      let config = new MatSnackBarConfig();
-      config.duration = 3000;
-      this.snackBar.open('댓글을 입력하세요.', null, config);
+      this.snackBar.open('댓글을 입력하세요.', null, {duration: 2000});
       return;
     }
 
@@ -60,9 +58,13 @@ export class CommentComponent implements OnChanges {
     console.log(this.newComment);
     this.userService.addComment(this.newComment)
       .subscribe(res => {
+        console.log(res);
         if (res.body['result'] === 0) {
           this.newComment.content = null;
-          localStorage.setItem('token', res.headers['refresh_token']);
+          if (res.headers.get('refresh_token')) {
+            localStorage.setItem('token', res.headers.get('refresh_token'));
+          }
+          // refresh_token은 헤더에 존재하나 null로 찍힘.
           this.getCommentList();
         }
       });

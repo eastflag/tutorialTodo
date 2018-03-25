@@ -1,0 +1,44 @@
+.box {
+  padding: 0 0.5rem;
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .container {
+    margin-bottom: 2rem;
+    padding: 0;
+    border: 1px solid #cccccc;
+    .inner {
+      padding: 1rem;
+      p {
+        margin: 0;
+      }
+      .form {
+        width: 100%;
+      }
+    }
+    .action {
+      margin-top: 0.5rem;
+      border-top: 1px solid #dddddd;
+    }
+  }
+
+  .list {
+    border-top: 1px solid #cccccc;
+    padding: 1rem 0.5rem 0.5rem 1rem;
+    .nickname {
+      margin: 0;
+    }
+    .content {
+      margin: 0;
+      color: #999999
+    }
+    .action {
+      margin-top: 0.5rem;
+      .updated {
+        color: #999999;
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

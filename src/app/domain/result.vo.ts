@@ -1,6 +1,6 @@
 export class ResultVO {
   result: number;
   msg: string;
-  data: any;
-  total: number;
+  data?: any;
+  total?: number;
 }

@@ -67,7 +67,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
   getMemberId(): number {
     let token = localStorage.getItem('token');
     if (token && !this.jwtHelper.isTokenExpired(token)) {
-      console.log(this.jwtHelper.decodeToken(token));
+      // console.log(this.jwtHelper.decodeToken(token));
       return +(this.jwtHelper.decodeToken(token).jti);
     } else {
       return 0;
@@ -78,7 +78,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
     let token = localStorage.getItem('token');
 
     if (token && !this.jwtHelper.isTokenExpired(token)) {
-      console.log(this.jwtHelper.decodeToken(token));
+      // console.log(this.jwtHelper.decodeToken(token));
       return true;
     } else {
       return false;

@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
     }
 
     if (!this.form.valid) {
-      this.snackBar.open('붉은색 부분을 확인하세요.', null, {duration: 2000});
+      this.snackBar.open('필수입력 사항을 확인하세요.', null, {duration: 2000});
       return;
     }
 
