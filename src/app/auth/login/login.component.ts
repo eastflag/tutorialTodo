@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     });
 
-    // naver login url 얻기
+    // naver login url 얻기: 교육용 localhost, production은 naver3
     this.userService.getSocial("naver2")
       .subscribe(value => {
         this.naverUrl = value['url'];

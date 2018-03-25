@@ -34,15 +34,15 @@
 
   <button mat-button [matMenuTriggerFor]="login_menu">
     <mat-icon svgIcon="person"></mat-icon>
-    <span *ngIf="!authService.isAuthenticated()">로그인</span>
-    <span *ngIf="authService.isAuthenticated()">로그아웃</span>
+    <span *ngIf="!isAuthenticated">로그인</span>
+    <span *ngIf="isAuthenticated">로그아웃</span>
   </button>
   <mat-menu #login_menu="matMenu" [overlapTrigger]="false">
-    <button mat-menu-item routerLink="/login" *ngIf="!authService.isAuthenticated()">
+    <button mat-menu-item routerLink="/login" *ngIf="!isAuthenticated">
       <mat-icon svgIcon="login"></mat-icon>
       <span>로그인</span>
     </button>
-    <button mat-menu-item (click)="authService.logOut()" *ngIf="authService.isAuthenticated()">
+    <button mat-menu-item (click)="authService.logOut()" *ngIf="isAuthenticated">
       <mat-icon svgIcon="logout"></mat-icon>
       <span>로그아웃</span>
     </button>

@@ -11,6 +11,8 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class IndexComponent implements OnInit {
 
+  isAuthenticated = false;
+
   constructor(public authService: AuthGuardService, private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer) {
     this.matIconRegistry.addSvgIcon(
@@ -44,5 +46,6 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAuthenticated = this.authService.isAuthenticated();
   }
 }
