@@ -10,6 +10,7 @@ import {NicknameComponent} from "./nickname/nickname.component";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {NewsComponent} from "./news/news.component";
 import {ViewComponent} from "./news/view/view.component";
+import {ChatComponent} from "./chat/chat.component";
 
 const routes: Routes = [
   { path: '', component: IndexComponent, children: [
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
     { path: 'nickname', component: NicknameComponent, canActivate: [AuthGuardService]},
+    { path: 'chat', component: ChatComponent, canActivate: [AuthGuardService]},
     { path: 'news', component: NewsComponent, children: [
       { path: 'view/:news_id', component: ViewComponent},
     ]},

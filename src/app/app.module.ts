@@ -33,6 +33,7 @@ import { NewsComponent } from './news/news.component';
 import { ViewComponent } from './news/view/view.component';
 import { CommentComponent } from './comment/comment.component';
 import {CommentDialogComponent} from "./comment/comment.dialog.component";
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {CommentDialogComponent} from "./comment/comment.dialog.component";
     NewsComponent,
     ViewComponent,
     CommentComponent,
-    CommentDialogComponent
+    CommentDialogComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
