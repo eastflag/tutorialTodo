@@ -7,6 +7,7 @@ import {PlatformLocation} from "@angular/common";
 import {MatDialog, MatDialogConfig, MatSnackBar, MatSnackBarConfig} from "@angular/material";
 import {ResultVO} from "../domain/result.vo";
 import {CommentDialogComponent} from "./comment.dialog.component";
+import {MemberVO} from "../domain/member.vo";
 
 @Component({
   selector: 'app-comment',
@@ -18,13 +19,18 @@ export class CommentComponent implements OnChanges {
   // 부모가 news_id값을 바꾸면 업데이트하기 위해서 OnChanges 를 오버라이딩 해야한다.
   @Input()
   news_id: number;
+  member: MemberVO;
 
   newComment: CommentVO = new CommentVO();
   commentList: Array<CommentVO>;
 
   constructor(private userService: UserService, public authService: AuthGuardService,
               private location: PlatformLocation, private snackBar: MatSnackBar, private dialog: MatDialog) {
-
+    const member_id = this.authService.getMemberId();
+    if (member_id) {
+      this.userService.getMember(member_id)
+        .subscribe(body => this.member = body);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -41,7 +47,6 @@ export class CommentComponent implements OnChanges {
 
   // textarea에 포커스가 오면 로그인을 체크한다. 완료시에 체크하면 입력된 내용을 저장했다 꺼내기가 번거롭다.
   checkLogin() {
-    console.log(this.location.pathname);
     // 로그인 체크
     this.authService.checkLogin(this.location.pathname);
   }

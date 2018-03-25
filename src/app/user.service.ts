@@ -90,6 +90,22 @@ export class UserService {
     return this.http.get(this.SERVER + '/api/social?site=' + site);
   }
 
+  getMember(member_id: number): Observable<MemberVO> {
+    let header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    });
+    return this.http.get<MemberVO>(this.SERVER + '/member/api/member?member_id=' + member_id, {headers: header});
+  }
+
+  modifyMember(member: MemberVO): Observable<ResultVO> {
+    let header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    });
+    return this.http.put<ResultVO>(this.SERVER + '/member/api/member', member, {headers: header});
+  }
+
 /*  private extractData(res: Response) {
     console.log(res);
     const body = res.json();

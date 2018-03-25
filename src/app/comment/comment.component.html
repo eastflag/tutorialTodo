@@ -3,7 +3,7 @@
 
   <div class="container">
     <div class="inner">
-      <p>닉네임</p>
+      <p *ngIf="member">{{member.nickname}}</p>
       <mat-form-field class="form">
         <textarea matInput [(ngModel)]="newComment.content" #content maxlength="300" placeholder="댓글을 작성하세요"
                 (focus)="checkLogin()"

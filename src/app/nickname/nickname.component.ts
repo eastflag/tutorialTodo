@@ -1,4 +1,9 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
+import {MemberVO} from "../domain/member.vo";
+import {UserService} from "../user.service";
+import {AuthGuardService} from "../auth/auth-guard.service";
 
 @Component({
   selector: 'app-nickname',
@@ -7,10 +12,30 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class NicknameComponent implements OnInit {
+  member: MemberVO;
+  form: FormGroup;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private fb: FormBuilder, private userService: UserService, private authService: AuthGuardService,
+              private snackBar: MatSnackBar) {
+    this.form = this.fb.group({
+      nickname: new FormControl(null, [Validators.required, Validators.minLength(4)]),
+      member_id: null,
+    });
   }
 
+  ngOnInit() {
+    this.userService.getMember(this.authService.getMemberId())
+      .subscribe(body => {
+        this.form.patchValue(body);
+      });
+  }
+
+  modifyMember() {
+    this.userService.modifyMember(this.form.value)
+      .subscribe(body => {
+        if (body.result === 0) {
+          this.snackBar.open("수정되었습니다.", null, {duration: 2000});
+        }
+      });
+  }
 }
