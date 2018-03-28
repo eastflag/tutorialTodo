@@ -12,6 +12,7 @@ import {ChatVO} from "../domain/chat.vo";
 export class ChatComponent implements OnInit, OnDestroy {
   member: MemberVO;
   message: string;
+  chatList = new Array<ChatVO>();
   ws: WebSocket;
 
   constructor(private userService: UserService, private authService: AuthGuardService) {
@@ -35,12 +36,13 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.ws.onmessage = (ev) => {
       console.log(ev.data);
-      const chat: ChatVO = ev.data as ChatVO;
+      const chat = JSON.parse(ev.data) as ChatVO;
 
       if ("WhoAreYou" === chat.command) {
-        this.ws.send(JSON.stringify({command: "IAmTom"}));
+        this.ws.send(JSON.stringify({command: "IAmTom", from: this.member.nickname, member_id: this.member.member_id}));
       } else if ("SendToEveryone" === chat.command) {
         console.log(chat.message);
+        this.chatList.push(chat);
       }
     };
 
@@ -53,9 +55,9 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.ws.close();
   }
 
-
   send() {
-    this.ws.send(JSON.stringify({command: "Send", message: this.message}));
+    this.ws.send(JSON.stringify({command: "SendToEveryone", from: this.member.nickname, message: this.message,
+      date: new Date().getTime()}));
     this.message = null;
   }
 }

@@ -35,7 +35,7 @@
   <button mat-button [matMenuTriggerFor]="login_menu">
     <mat-icon svgIcon="person"></mat-icon>
     <span *ngIf="!authService.isAuthenticated()">로그인</span>
-    <span *ngIf="authService.isAuthenticated()">로그아웃</span>
+    <span *ngIf="authService.isAuthenticated()">내 정보</span>
   </button>
   <mat-menu #login_menu="matMenu" [overlapTrigger]="false">
     <button mat-menu-item routerLink="/login" *ngIf="!authService.isAuthenticated()">
@@ -49,6 +49,10 @@
     <button mat-menu-item routerLink="/nickname">
       <mat-icon svgIcon="nickname"></mat-icon>
       <span>닉네임변경</span>
+    </button>
+    <button mat-menu-item routerLink="/chat">
+      <mat-icon svgIcon="chat"></mat-icon>
+      <span>채팅</span>
     </button>
   </mat-menu>
 </mat-toolbar>

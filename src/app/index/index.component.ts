@@ -41,6 +41,10 @@ export class IndexComponent implements OnInit {
       "nickname",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/svg/ic_build_black_24px.svg")
     );
+    this.matIconRegistry.addSvgIcon(
+      "chat",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/svg/ic_chat_black_24px.svg")
+    );
   }
 
   ngOnInit() {
