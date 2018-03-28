@@ -28,7 +28,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   init() {
-    this.ws = new WebSocket("ws://localhost:8080/api/chat");
+    this.ws = new WebSocket("ws://www.javabrain.kr:8080/api/chat");
 
     this.ws.onopen = () => {
       console.log('web socket open');
