@@ -30,7 +30,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.ws = new WebSocket("ws://localhost:8080/api/chat");
 
     this.ws.onopen = () => {
-
+      console.log('web socket open');
     };
 
     this.ws.onmessage = (ev) => {
@@ -39,7 +39,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
       if ("WhoAreYou" === chat.command) {
         this.ws.send(JSON.stringify({command: "IAmTom"}));
-      } else if ("Receive" === chat.command) {
+      } else if ("SendToEveryone" === chat.command) {
         console.log(chat.message);
       }
     };
@@ -56,5 +56,6 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   send() {
     this.ws.send(JSON.stringify({command: "Send", message: this.message}));
+    this.message = null;
   }
 }

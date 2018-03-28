@@ -1,3 +1,48 @@
-<p>
-  <input [(ngModel)]="message"><button mat-raised-button color="primary" (click)="send()">전송</button>
-</p>
+<mat-card>
+  <mat-card-header>
+
+  </mat-card-header>
+  <mat-card-content fxLayout="column" fxLayoutAlign="start start">
+    <div class="chat-conversation-user them">
+      <div class="chat-conversation-message">
+        <p>Hey.<span class="chat-date">{{ 1427207139000 | date: 'fullDate' }}</span></p>
+      </div>
+    </div>
+    <div class="chat-conversation-user them">
+      <div class="chat-conversation-message">
+        <p>How are the wife and kids, Taylor? asdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff<span class="chat-date">{{ 1427412725000 | date: 'fullDate' }}</span></p>
+      </div>
+    </div>
+    <div class="chat-conversation-user me">
+      <div class="chat-conversation-message">
+        <p>Pretty good, Samuel. How are the wife and kids, Taylor? asdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff<span class="chat-date">{{ 1427546580000 | date: 'fullDate' }}</span></p>
+      </div>
+    </div>
+    <div class="chat-conversation-user them">
+      <div class="chat-conversation-message">
+        <p>Curabitur blandit tempus porttitor.<span class="chat-date">{{ 1428275520000 | date: 'fullDate' }}</span></p>
+      </div>
+    </div>
+    <div class="chat-conversation-user me">
+      <div class="chat-conversation-message">
+        <p>Goodnight!<span class="chat-date">{{ 1428830580000 | date: 'fullDate' }}</span></p>
+      </div>
+    </div>
+    <div class="chat-conversation-user them">
+      <div class="chat-conversation-message">
+        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.<span class="chat-date">{{ 1429363920000 | date: 'fullDate' }}</span></p>
+      </div>
+    </div>
+  </mat-card-content>
+  <hr>
+  <mat-card-actions>
+    <div fxLayout="row" layout-align="start center">
+      <mat-form-field class="mr-1 ml-1" fxFlex>
+        <input matInput placeholder="Send message" [(ngModel)]="message">
+      </mat-form-field>
+      <button mat-fab (click)="send()" (keyup)="send()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

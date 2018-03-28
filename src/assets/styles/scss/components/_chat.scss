@@ -4,16 +4,16 @@
 @import "../mixins";
 
 .chat-conversation-user {
+  @include flexbox();
   overflow: hidden;
   box-sizing: border-box;
-  width: 100%;
   margin-bottom: $gutter;
   padding: 0 2rem;
-  @include flexbox;
+  max-width: 70%;
 }
 
 .me {
-  @include justify-content(flex-end);
+  @include align-self(flex-end);
 }
 
 .me .chat-conversation-avatar {
@@ -65,7 +65,7 @@
   width: 0;
   height: 0;
   content: '';
-  border: 5px solid mat-color($background, card);
+  border: 5px solid #1680e4;
   border-bottom-color: transparent;
   @include left(-7px);
   @include border-left-color(transparent);
@@ -81,10 +81,20 @@
     border-radius: 50%;
   }
 }
+
 .chat-conversation-user.me .chat-conversation-message {
   position: relative;
   background-color: mat-color($accent);
   @include float(right);
+  p {
+    color: white;
+  }
+}
+
+.chat-conversation-user.them .chat-conversation-message {
+  position: relative;
+  background-color: #1680e4;
+  @include float(left);
   p {
     color: white;
   }
