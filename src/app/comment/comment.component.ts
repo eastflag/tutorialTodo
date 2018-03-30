@@ -29,7 +29,7 @@ export class CommentComponent implements OnChanges {
     const member_id = this.authService.getMemberId();
     if (member_id) {
       this.userService.getMember(member_id)
-        .subscribe(body => this.member = body);
+        .subscribe(resp => this.member = resp.body);
     }
   }
 

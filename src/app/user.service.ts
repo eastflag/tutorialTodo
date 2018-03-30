@@ -1,3 +1,4 @@
+///<reference path="../../node_modules/@angular/common/http/src/response.d.ts"/>
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {environment} from "../environments/environment";
@@ -90,20 +91,20 @@ export class UserService {
     return this.http.get(this.SERVER + '/api/social?site=' + site);
   }
 
-  getMember(member_id: number): Observable<MemberVO> {
+  getMember(member_id: number): Observable<HttpResponse<MemberVO>> {
     let header = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': localStorage.getItem('token')
     });
-    return this.http.get<MemberVO>(this.SERVER + '/member/api/member?member_id=' + member_id, {headers: header});
+    return this.http.get<MemberVO>(this.SERVER + '/member/api/member?member_id=' + member_id, {headers: header, observe: 'response'});
   }
 
-  modifyMember(member: MemberVO): Observable<ResultVO> {
+  modifyMember(member: MemberVO): Observable<HttpResponse<ResultVO>> {
     let header = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': localStorage.getItem('token')
     });
-    return this.http.put<ResultVO>(this.SERVER + '/member/api/member', member, {headers: header});
+    return this.http.put<ResultVO>(this.SERVER + '/member/api/member', member, {headers: header, observe: 'response'});
   }
 
 /*  private extractData(res: Response) {

@@ -25,15 +25,16 @@ export class NicknameComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getMember(this.authService.getMemberId())
-      .subscribe(body => {
-        this.form.patchValue(body);
+      .subscribe(resp => {
+        console.log(resp);
+        this.form.patchValue(resp.body);
       });
   }
 
   modifyMember() {
     this.userService.modifyMember(this.form.value)
-      .subscribe(body => {
-        if (body.result === 0) {
+      .subscribe(resp => {
+        if (resp.body.result === 0) {
           this.snackBar.open("수정되었습니다.", null, {duration: 2000});
         }
       });
