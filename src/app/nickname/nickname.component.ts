@@ -27,7 +27,10 @@ export class NicknameComponent implements OnInit {
     this.userService.getMember(this.authService.getMemberId())
       .subscribe(resp => {
         console.log(resp);
+        console.log(resp.headers.get('refresh_token'));
         this.form.patchValue(resp.body);
+
+        localStorage.setItem('token', resp.headers.get('refresh_token'));
       });
   }
 
