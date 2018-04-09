@@ -61,7 +61,7 @@ console.log('forEach sum:' + sum);
 
 
 // 11. 제목앞에 판매순위를 등수를 붙인("콩쥐팥쥐" => "1등 콩쥐팥쥐") 새로운 배열을 생성 하시오.(힌트: map)
-// 이때, 기존 배열과 비교시 값이 같은가? 다른가?
+// 기존 배열의 값은 변경하지 말고 제목만 변경된 새로운 배열을 생성
 console.log('11 -------------------------------------------------------------------');
 var newMap = books.map(item => {
     return Object.assign({}, item, {title: item.order + '등 ' + item.title});
