@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+  <form id="fileForm">
+    <input type="text" value="hong" name="sender" id="sender">
+    <input type="file" id="file_1">
+    <button type="submit">전송</button>
+  </form>
+  <img src="" id="image">
+  <script>
+    $(document).ready(function() {
+      $('#fileForm').on('submit', function(e) {
+        console.log('upload');
+
+        var formData = new FormData();
+        console.log($("#file_1")[0].files);
+        formData.append('sender', $('#sender').val());
+        formData.append('file', $("#file_1")[0].files[0], $("#file_1")[0].files[0].name);
+
+        $.ajax({
+          url: 'http://www.javabrain.kr:8080/api/imageUpload',
+          type: 'post',
+          processData: false,
+          contentType: false,
+          data: formData,
+          success: function(data){
+            console.log(data);
+            $('#image').attr('src', 'http://www.javabrain.kr' + data.value);
+          }
+        });
+
+        return false;
+      });
+    });
+  </script>
+</body>
+</html>

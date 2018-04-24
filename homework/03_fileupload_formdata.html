@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+  <form id="fileForm">
+    <input type="text" value="hong" name="sender" id="sender">
+    <input type="file" id="file_1">
+    <button type="submit">전송</button>
+  </form>
+  <img src="" id="image">
+  <script>
+    $(document).ready(function() {
+      $('#fileForm').on('submit', function(e) {
+        console.log('upload');
+
+        //1. 파일선택 버튼을 누를때, 이미지 화일만 보이도록 필터링, 다중 선택 가능하도록 html 수정하기
+
+        //2. submit 버튼을 누르면 console.log창에 로그가 찍히고 submit 버튼의 기본 이벤트로 화면이 깜박이면서
+        //   콘솔로그가 사라진다. submit 액션의 기본 이벤트가 동작하지 않도록 하자.
+
+        //3. html5 API 객체중 formData 객체를 사용하여 $.ajax로 비동기로 파일 업로드를 하자.
+        //   input 타입이 text이면 formData.append(name, value),
+        //   input 타입이 파일이면 formData.append(name, value, filename); 사용
+        //
+        //   url: http://www.javabrain.kr:8080/api/imageUpload
+        //   return type:  {result: 0, value: "/assets/upload/news/1524557671138.png"}
+
+        //4. return type의 value는 http://www.javabrain.kr 호스트에 올려져있다.
+        //   전송 버튼을 누르면 img 태그 src에 호스트와 value를 합쳐서 하단에 이미지가 나타나도록 하자.
+      });
+    });
+  </script>
+</body>
+</html>

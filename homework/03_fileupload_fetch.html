@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+  <form id="fileForm">
+    <input type="text" value="hong" name="sender" id="sender">
+    <input type="file" id="file_1">
+    <button type="submit">전송</button>
+  </form>
+  <img src="" id="image">
+  <script>
+    $(document).ready(function() {
+      $('#fileForm').on('submit', function(e) {
+        console.log('upload');
+
+        //1. $.ajax 를 fetch 메서드로 바꾸어본다. (반드시 chrome에서 테스트해야한다.)
+
+        //2. fetch()는 Promise 객체가 리턴된다. Promise 객체는 then을 통해서 비동기 콜백을 처리한다
+        //   첫번째 then에서는 reponse 객체가 리턴되는데 응답코드가 200번대가 아닐경우는 error를 throw하도록 한다.
+        //   응답코드가 200번일 경우는 response 객체중 body만 리턴되도록 한다.
+
+        //3. 두번째 then에서는 응답데이터에서 value부분을 꺼내서 img 태그에 이미지가 나타나도록 한다.
+
+        //4. method를 post가 아니라 put으로 할경우 응답코드가 무엇인가?
+        //   catch를 추가하여 에러를 프린트한다.
+      });
+    });
+  </script>
+</body>
+</html>
