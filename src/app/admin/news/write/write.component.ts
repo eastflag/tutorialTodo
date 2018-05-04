@@ -33,6 +33,8 @@ export class WriteComponent implements OnInit {
     this.adminService.addNews(this.news)
       .then(res => {
         if (res['result'] === 0) {
+          // 뉴스 목록을 갱신하라고 부모에게 알려준다.
+          this.adminService.refresh.next(true);
           this.router.navigateByUrl('/admin/news');
         }
       });

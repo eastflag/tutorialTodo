@@ -1,8 +1,10 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {PageVO} from "../../domain/page.vo";
 import {AdminService} from "../admin.service";
 import {NewsVO} from "../../domain/news.vo";
 import {NavigationStart, Router} from "@angular/router";
+import {Subject} from "rxjs/Subject";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-news',
@@ -10,19 +12,30 @@ import {NavigationStart, Router} from "@angular/router";
   styleUrls: ['./news.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent implements OnInit, OnDestroy {
   page: PageVO = new PageVO(0, 5);
   newsList: Array<NewsVO>;
   selectedNews: NewsVO;
+  subscription: Subscription;
 
-  constructor(private adminService: AdminService, private router: Router) { }
+  constructor(private adminService: AdminService, private router: Router) {
+  }
 
   ngOnInit() {
     console.log('news init');
+
+    // 뉴스 목록이 업데이트 되었는지 관찰한다.
+    this.subscription = this.adminService.refresh$.subscribe(data => {
+      if (data) {
+        this.getNewsList();
+      }
+    });
+
     this.getNewsList();
 
     // 글쓰기, 삭제 수정을 마치고 돌아오면 목록을 리프레쉬해야 한다.
-    this.router.events.subscribe(events => {
+    // Subject 객체를 Service에 두고 리프레쉬하는것으로 변경함.
+/*    this.router.events.subscribe(events => {
       // 부모, 자식 경로가 호출될때마다 여러가지 이벤트 발생. NavigationStart -> NavigationReconized -> NavigationEnd
       if (events instanceof NavigationStart) {
         console.log('nagigation start:' + events.url);
@@ -30,7 +43,7 @@ export class NewsComponent implements OnInit {
           this.getNewsList();
         }
       }
-    });
+    });*/
   }
 
 
@@ -62,4 +75,9 @@ export class NewsComponent implements OnInit {
   gotoWrite() {
     this.router.navigateByUrl(`/admin/news/write`);
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
 }

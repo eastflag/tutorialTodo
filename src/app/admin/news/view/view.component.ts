@@ -59,6 +59,8 @@ export class ViewComponent implements OnInit {
               let conf = new MatSnackBarConfig();
               conf.duration = 3000;
               this.snackBar.open('삭제하였습니다.', null, conf);
+              // 뉴스 목록이 갱신되었음을 알린다.
+              this.adminService.refresh.next(true);
               this.router.navigate(['../..'], {relativeTo: this.route});
             }
           });
