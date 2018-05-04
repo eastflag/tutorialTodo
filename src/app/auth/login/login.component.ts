@@ -15,21 +15,23 @@ import {UserService} from "../../user.service";
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  private authSub: Subscription;
+  // private authSub: Subscription;
 
   member = new MemberVO();
-  authState: Observable<firebase.User>;
-  currentUser: firebase.User = null;
+  // authState: Observable<firebase.User>;
+  // currentUser: firebase.User = null;
 
   naverUrl: string;
+  kakaoUrl: string;
+  facebookUrl: string;
 
   constructor(public afAuth: AngularFireAuth, private router: Router, private authGuard: AuthGuardService,
               private userService: UserService, private route: ActivatedRoute) {
-    this.authState = this.afAuth.authState;
+    // this.authState = this.afAuth.authState;
   }
 
   ngOnInit() {
-     this.authSub = this.authState.subscribe(user => {
+/*     this.authSub = this.authState.subscribe(user => {
       if (user) {
         // 로그인이 성공하면 호출 or 로그인 상태에서 다른 페이지 들어갔다가 들어와도 호출.
         this.currentUser = user;
@@ -41,12 +43,22 @@ export class LoginComponent implements OnInit, OnDestroy {
       } else {
         this.currentUser = null;
       }
-    });
+    });*/
 
     // naver login url 얻기: 교육용 localhost, production은 naver3
     this.userService.getSocial("naver2")
       .subscribe(value => {
         this.naverUrl = value['url'];
+      });
+
+    this.userService.getSocial("kakao")
+      .subscribe(value => {
+        this.kakaoUrl = value['url'];
+      });
+
+    this.userService.getSocial("facebook2")
+      .subscribe(value => {
+        this.facebookUrl = value['url'];
       });
 
     // 로그인 결과의 토큰이 오는지 체크
@@ -72,11 +84,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.authSub.unsubscribe();
-    this.afAuth.auth.signOut();
+    // this.authSub.unsubscribe();
+    // this.afAuth.auth.signOut();
   }
 
-  signupWithPassword() {
+/*  signupWithPassword() {
     this.afAuth.auth.createUserWithEmailAndPassword(this.member.email, this.member.pw)
       .then(data => {
         console.log(data);
@@ -98,5 +110,5 @@ export class LoginComponent implements OnInit, OnDestroy {
       .then(data => {
         console.log('signInWithPopup', data);
       });
-  }
+  }*/
 }

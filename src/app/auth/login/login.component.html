@@ -7,7 +7,7 @@
     </mat-card-header>
 
     <mat-card-content fxLayout="column">
-      <mat-form-field>
+<!--      <mat-form-field>
         <input matInput [(ngModel)]="member.email" name="email" placeholder="이메일">
         <mat-icon matSuffix>email</mat-icon>
       </mat-form-field>
@@ -28,7 +28,33 @@
 
       <div class="mt-1">
         <a [href]="naverUrl" *ngIf="naverUrl"><img src="/assets/images/naver.png" style="max-width: 100%;"></a>
+      </div>-->
+
+      <div class="mt-1">
+        <a [href]="naverUrl" *ngIf="naverUrl">
+          <button mat-raised-button color="accent" class="mat-block">
+            naver login
+          </button>
+        </a>
       </div>
+
+      <div class="mt-1">
+        <a [href]="kakaoUrl" *ngIf="kakaoUrl">
+          <button mat-raised-button color="accent" class="mat-block">
+            kakaotalk login
+          </button>
+        </a>
+      </div>
+
+      <div class="mt-1">
+        <a [href]="facebookUrl" *ngIf="facebookUrl">
+          <button mat-raised-button color="accent" class="mat-block">
+            facebook login
+          </button>
+        </a>
+      </div>
+
+
     </mat-card-content>
 
   </mat-card>
