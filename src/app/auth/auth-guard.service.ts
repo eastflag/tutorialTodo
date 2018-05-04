@@ -9,14 +9,21 @@ import {MemberVO} from "../domain/member.vo";
 import {ResultVO} from "../domain/result.vo";
 import {JwtHelper} from "angular2-jwt";
 import {Observable} from "rxjs/Observable";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad {
   private jwtHelper: JwtHelper;
   redirectUrl: string;
 
+  private authSource = new Subject<boolean>();
+
+  public authSource$: Observable<boolean> = this.authSource.asObservable();
+
   constructor(private router: Router, private userService: UserService,  public afAuth: AngularFireAuth) {
     this.jwtHelper = new JwtHelper();
+    // 초기화: 모든 컴포넌트가 생성된 후에 초기 데이터를 보낸다.
+    setTimeout(() => this.authSource.next(this.isAuthenticated()), 1000);
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
@@ -42,12 +49,14 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
     let token = localStorage.getItem('token');
 
     if (token && !this.jwtHelper.isTokenExpired(token)) {
+      this.authSource.next(true);
       return true;
+    } else {
+      this.redirectUrl = url;
+      this.router.navigateByUrl('/login');
+      this.authSource.next(false);
+      return false;
     }
-
-    this.redirectUrl = url;
-    this.router.navigateByUrl('/login');
-    return false;
   }
 
   isAdmin() {
@@ -90,6 +99,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
     localStorage.removeItem('token');
     this.afAuth.auth.signOut();
     this.redirectUrl = null;
+    this.authSource.next(false);
     this.router.navigateByUrl('/');
   }
 
