@@ -34,11 +34,11 @@
 
   <button mat-button [matMenuTriggerFor]="login_menu">
     <mat-icon svgIcon="person"></mat-icon>
-    <span *ngIf="!authService.authSource$ | async">로그인</span>
+    <span *ngIf="!(authService.authSource$ | async)">로그인</span>
     <span *ngIf="authService.authSource$ | async">내 정보</span>
   </button>
   <mat-menu #login_menu="matMenu" [overlapTrigger]="false">
-    <button mat-menu-item routerLink="/login" *ngIf="!authService.authSource$ | async">
+    <button mat-menu-item routerLink="/login" *ngIf="!(authService.authSource$ | async)">
       <mat-icon svgIcon="login"></mat-icon>
       <span>로그인</span>
     </button>
@@ -55,9 +55,10 @@
       <span>채팅</span>
     </button>
   </mat-menu>
+
+  <!--<p>data: {{!(authService.authSource$ | async)}}</p>-->
 </mat-toolbar>
 
 <div class="container">
   <router-outlet></router-outlet>
 </div>
-
