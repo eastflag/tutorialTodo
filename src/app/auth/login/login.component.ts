@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.naverUrl = value['url'];
       });
 
-    this.userService.getSocial("kakao")
+    this.userService.getSocial("kakao2")
       .subscribe(value => {
         this.kakaoUrl = value['url'];
       });
@@ -82,6 +82,18 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  gotoSocial(site: string) {
+    if (site === 'naver') {
+      location.href = this.naverUrl;
+    } else if (site === 'kakao') {
+      location.href = this.kakaoUrl;
+    } else if (site === 'facebook') {
+      location.href = this.facebookUrl;
+    }
+  }
+
+
 
   ngOnDestroy(): void {
     // this.authSub.unsubscribe();

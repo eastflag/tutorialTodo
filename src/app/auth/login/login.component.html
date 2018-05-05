@@ -30,29 +30,30 @@
         <a [href]="naverUrl" *ngIf="naverUrl"><img src="/assets/images/naver.png" style="max-width: 100%;"></a>
       </div>-->
 
-      <div class="mt-1">
-        <a [href]="naverUrl" *ngIf="naverUrl">
-          <button mat-raised-button color="accent" class="mat-block">
-            naver login
-          </button>
-        </a>
-      </div>
-
-      <div class="mt-1">
-        <a [href]="kakaoUrl" *ngIf="kakaoUrl">
-          <button mat-raised-button color="accent" class="mat-block">
-            kakaotalk login
-          </button>
-        </a>
-      </div>
-
-      <div class="mt-1">
-        <a [href]="facebookUrl" *ngIf="facebookUrl">
-          <button mat-raised-button color="accent" class="mat-block">
-            facebook login
-          </button>
-        </a>
-      </div>
+      <button mat-raised-button class="button facebook mx-xs my-1" *ngIf="naverUrl" (click)="gotoSocial('facebook')">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <span class="fab">f</span>
+          <span fxFlex="1 1 auto"></span>
+          <span>페이스북 계정으로 로그인</span>
+          <span fxFlex="1 1 auto"></span>
+        </div>
+      </button>
+      <button mat-raised-button class="button kakaotalk mx-xs my-1" *ngIf="kakaoUrl" (click)="gotoSocial('kakao')">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <span class="fab">K</span>
+          <span fxFlex="1 1 auto"></span>
+          <span>카카오 계정으로 로그인</span>
+          <span fxFlex="1 1 auto"></span>
+        </div>
+      </button>
+      <button mat-raised-button class="button naver mx-xs my-1" *ngIf="facebookUrl" (click)="gotoSocial('naver')">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <span class="fab">N</span>
+          <span fxFlex="1 1 auto"></span>
+          <span>네이버 계정으로 로그인</span>
+          <span fxFlex="1 1 auto"></span>
+        </div>
+      </button>
 
 
     </mat-card-content>
