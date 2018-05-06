@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {NewsVO} from "../../domain/news.vo";
 import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../user.service";
+import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-view',
@@ -12,8 +13,9 @@ import {UserService} from "../../user.service";
 export class ViewComponent implements OnInit {
 
   news: NewsVO;
+  html: SafeHtml;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -21,6 +23,7 @@ export class ViewComponent implements OnInit {
       this.userService.findOneNews(news_id)
         .subscribe((res: NewsVO) => {
           this.news = res;
+          this.html = this.sanitizer.bypassSecurityTrustHtml(this.news.content);
         });
     });
   }
