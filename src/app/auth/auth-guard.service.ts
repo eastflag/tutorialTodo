@@ -10,25 +10,26 @@ import {ResultVO} from "../domain/result.vo";
 import {JwtHelper} from "angular2-jwt";
 import {Observable} from "rxjs/Observable";
 import {Subject} from "rxjs/Subject";
+import {LoginDialogComponent} from "./login/login.dialog.component";
+import {MatDialog, MatSnackBar} from "@angular/material";
 
 @Injectable()
 export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad {
   private jwtHelper: JwtHelper;
-  redirectUrl: string;
 
-  private authSource = new Subject<boolean>();
+  public authSource = new Subject<boolean>();
 
   public authSource$: Observable<boolean> = this.authSource.asObservable();
 
-  constructor(private router: Router, private userService: UserService,  public afAuth: AngularFireAuth) {
+  constructor(private router: Router, private userService: UserService,  public afAuth: AngularFireAuth,
+              private dialog: MatDialog, private snackBar: MatSnackBar) {
     this.jwtHelper = new JwtHelper();
     // 초기화: 모든 컴포넌트가 생성된 후에 초기 데이터를 보낸다.
     setTimeout(() => this.authSource.next(this.isAuthenticated()), 1000);
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-    let url: string = state.url;
-    return this.checkLogin(url);
+    return this.checkLogin(state.url);
   }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
@@ -40,21 +41,27 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
       return true;
     }
 
-    this.redirectUrl = '/admin';
-    this.router.navigateByUrl('/login');
+    localStorage.setItem('redirectUrl', '/admin');
+    this.openLogin();
     return false;
   }
 
-  checkLogin(url: string): boolean {
-    let token = localStorage.getItem('token');
+  openLogin() {
+    this.dialog.open(LoginDialogComponent);
+  }
 
-    if (token && !this.jwtHelper.isTokenExpired(token)) {
+
+  checkLogin(url: string): boolean {
+    // save redirect url
+    localStorage.setItem('redirectUrl', url);
+
+    if (this.isAuthenticated()) {
       this.authSource.next(true);
       return true;
     } else {
-      this.redirectUrl = url;
-      this.router.navigateByUrl('/login');
       this.authSource.next(false);
+      this.openLogin();
+      this.snackBar.open("로그인이 필요한 서비스입니다.", null, {duration: 2000});
       return false;
     }
   }
@@ -97,30 +104,9 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
   logOut() {
     // 스토리지에 저장된 토큰 정보와 인증 정보를 삭제
     localStorage.removeItem('token');
-    this.afAuth.auth.signOut();
-    this.redirectUrl = null;
+    localStorage.removeItem('redirectUrl');
     this.authSource.next(false);
+    this.snackBar.open("로그아웃하였습니다.", null, {duration: 2000});
     this.router.navigateByUrl('/');
   }
-
-  login(member: MemberVO) {
-    this.userService.login(member)
-      .then((res: ResultVO) => {
-        if (res.result === 0) {
-          // 로그인 성공. 서버에서 받은 토큰 정보를 스토리지에 저장.
-          localStorage.setItem('token', res.data['token']);
-          if (this.redirectUrl) {
-            this.router.navigateByUrl(this.redirectUrl);
-          } else {
-            this.router.navigateByUrl('/');
-          }
-        } else if (res.result === 100) {  // email does not exist
-          // 서버에 정보가 없으므로 회원추가 페이지로 이동.
-          this.router.navigateByUrl('/register');
-          localStorage.setItem('member', JSON.stringify(member));
-        }
-
-      });
-  }
-
 }

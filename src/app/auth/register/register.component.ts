@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewEncapsulation} from '@angular/core';
 import {MemberVO} from "../../domain/member.vo";
 import {UserService} from "../../user.service";
 import {AuthGuardService} from "../auth-guard.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
 import {ResultVO} from "../../domain/result.vo";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
   public form: FormGroup;
 
   constructor(private snackBar: MatSnackBar, private userService: UserService, private authGuard: AuthGuardService
-    , private router: Router, private fb: FormBuilder, public el: ElementRef) {
+    , private router: Router, private fb: FormBuilder, public el: ElementRef, private route: ActivatedRoute) {
     this.config = new MatSnackBarConfig();
     this.config.duration = 3000;
 
@@ -44,6 +44,29 @@ export class RegisterComponent implements OnInit {
     this.member = JSON.parse(localStorage.getItem('member'));
 
     $("#postcode").postcodifyPopUp();
+
+    // 로그인 결과의 토큰이 오는지 체크
+    this.route.queryParams.subscribe(params => {
+      let result = +params['result'];
+      if (result === 0) { // 로그인 성공, 회원정보 있음
+        console.log('login success:' + params['token']);
+        // 토큰 저장
+        localStorage.setItem('token', params['token']);
+        // auth 상태 publish
+        this.authGuard.authSource.next(true);
+
+        const redirectUrl = localStorage.getItem('redirectUrl');
+        if (redirectUrl) {
+          this.router.navigateByUrl(redirectUrl);
+        } else {
+          this.router.navigateByUrl('/');
+        }
+      } else if (result === 100) { // 회원 정보 없음
+        console.log('login fail');
+        this.member.join_path = params['join_path'];
+        this.member.email = params['email'];
+      }
+    });
   }
 
   register() {
@@ -71,10 +94,13 @@ export class RegisterComponent implements OnInit {
       .then((res: ResultVO) => {
         if (res.result === 0) {
           localStorage.setItem('token', res.data['token']);
+          // auth 상태 publish
+          this.authGuard.authSource.next(true);
 
           // 페이지 리프레쉬
-          if (this.authGuard.redirectUrl) {
-            this.router.navigateByUrl(this.authGuard.redirectUrl);
+          const redirectUrl = localStorage.getItem('redirectUrl');
+          if (redirectUrl) {
+            this.router.navigateByUrl(redirectUrl);
           } else {
             this.router.navigateByUrl('/');
           }

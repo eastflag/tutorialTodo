@@ -38,7 +38,7 @@
     <span *ngIf="authService.authSource$ | async">내 정보</span>
   </button>
   <mat-menu #login_menu="matMenu" [overlapTrigger]="false">
-    <button mat-menu-item routerLink="/login" *ngIf="!(authService.authSource$ | async)">
+    <button mat-menu-item (click)="authService.openLogin()" *ngIf="!(authService.authSource$ | async)">
       <mat-icon svgIcon="login"></mat-icon>
       <span>로그인</span>
     </button>

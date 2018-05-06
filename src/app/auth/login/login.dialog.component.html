@@ -1,5 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center center">
-  <mat-card fxFlex.xs="1 1 100%" fxFlex.gt-xs="1 1 75%" fxFlex.gt-sm="1 1 50%">
+  <mat-card>
     <mat-card-header>
       <mat-card-title>
         로그인
@@ -30,7 +29,7 @@
         <a [href]="naverUrl" *ngIf="naverUrl"><img src="/assets/images/naver.png" style="max-width: 100%;"></a>
       </div>-->
 
-      <button mat-raised-button class="button facebook mx-xs my-1" *ngIf="naverUrl" (click)="gotoSocial('facebook')">
+      <button mat-raised-button class="button facebook my-1" *ngIf="naverUrl" (click)="gotoSocial('facebook')">
         <div fxLayout="row" fxLayoutAlign="start center">
           <span class="fab">f</span>
           <span fxFlex="1 1 auto"></span>
@@ -38,7 +37,7 @@
           <span fxFlex="1 1 auto"></span>
         </div>
       </button>
-      <button mat-raised-button class="button kakaotalk mx-xs my-1" *ngIf="kakaoUrl" (click)="gotoSocial('kakao')">
+      <button mat-raised-button class="button kakaotalk my-1" *ngIf="kakaoUrl" (click)="gotoSocial('kakao')">
         <div fxLayout="row" fxLayoutAlign="start center">
           <span class="fab">K</span>
           <span fxFlex="1 1 auto"></span>
@@ -46,7 +45,7 @@
           <span fxFlex="1 1 auto"></span>
         </div>
       </button>
-      <button mat-raised-button class="button naver mx-xs my-1" *ngIf="facebookUrl" (click)="gotoSocial('naver')">
+      <button mat-raised-button class="button naver my-1" *ngIf="facebookUrl" (click)="gotoSocial('naver')">
         <div fxLayout="row" fxLayoutAlign="start center">
           <span class="fab">N</span>
           <span fxFlex="1 1 auto"></span>
@@ -59,4 +58,3 @@
     </mat-card-content>
 
   </mat-card>
-</div>

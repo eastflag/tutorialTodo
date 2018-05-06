@@ -4,7 +4,6 @@ import {HomeComponent} from "./home/home.component";
 import {JqueryComponent} from "./jquery/jquery.component";
 import {NgModule} from "@angular/core";
 import {AngularComponent} from "./angular/angular.component";
-import {LoginComponent} from "./auth/login/login.component";
 import {RegisterComponent} from "./auth/register/register.component";
 import {NicknameComponent} from "./nickname/nickname.component";
 import {AuthGuardService} from "./auth/auth-guard.service";
@@ -17,7 +16,6 @@ const routes: Routes = [
     { path: '', component: HomeComponent},
     { path: 'jquery', component: JqueryComponent},
     { path: 'angular', component: AngularComponent},
-    { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
     { path: 'nickname', component: NicknameComponent, canActivate: [AuthGuardService]},
     { path: 'chat', component: ChatComponent, canActivate: [AuthGuardService]},

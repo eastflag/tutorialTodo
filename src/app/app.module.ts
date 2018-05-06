@@ -22,7 +22,6 @@ import {UserService} from "./user.service";
 import {HttpClientModule} from "@angular/common/http";
 import { HighlightDirective } from './highlight.directive';
 import {MyDatePipe} from './my.date.pipe';
-import { LoginComponent } from './auth/login/login.component';
 import {AngularFireAuth} from "angularfire2/auth";
 import {AngularFireModule} from "angularfire2";
 import {environment} from "../environments/environment";
@@ -34,6 +33,7 @@ import { ViewComponent } from './news/view/view.component';
 import { CommentComponent } from './comment/comment.component';
 import {CommentDialogComponent} from "./comment/comment.dialog.component";
 import { ChatComponent } from './chat/chat.component';
+import {LoginDialogComponent} from "./auth/login/login.dialog.component";
 
 
 @NgModule({
@@ -45,7 +45,7 @@ import { ChatComponent } from './chat/chat.component';
     AngularComponent,
     HighlightDirective,
     MyDatePipe,
-    LoginComponent,
+    LoginDialogComponent,
     RegisterComponent,
     NicknameComponent,
     NewsComponent,
@@ -78,7 +78,7 @@ import { ChatComponent } from './chat/chat.component';
     MatNativeDateModule,
   ],
   providers: [UserService, AngularFireAuth, AuthGuardService],
-  entryComponents: [CommentDialogComponent],
+  entryComponents: [LoginDialogComponent, CommentDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
