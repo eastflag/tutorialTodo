@@ -4,7 +4,7 @@ $mat-card-header-size: 40px !default;
 body {
   .mat-card {
     padding: 0;
-    margin: ($gutter/2);
+    margin: ($gutter/3);
     font-family: inherit;
     border-radius: $border-radius-base;
     @include mat-elevation(1);
@@ -144,17 +144,6 @@ body [dir="rtl"] {
     [mat-card-float-icon] {
       right: auto;
       left: 15px;
-    }
-  }
-}
-
-@media screen and (max-width: 599px) {
-  body {
-    .mat-card {
-      margin: ($gutter/2);
-      .mat-card-content {
-        padding: 0.2rem;
-      }
     }
   }
 }

@@ -27,3 +27,9 @@ button[mat-button]:hover svg {
   transform: rotateY(180deg) scale(1.1);
   fill: cyan;
 }
+
+@media screen and (max-width: 599px) {
+  .container {
+    padding: 0.2rem;
+  }
+}

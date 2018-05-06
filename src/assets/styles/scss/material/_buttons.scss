@@ -24,6 +24,14 @@ $mat-fab-padding: 16px !default;
   }
 }
 
+body {
+  .mat-raised-button {
+    min-width: 6.28rem;
+    line-height: 2.57rem;
+    padding: 0 1.14rem;
+  }
+}
+
 @mixin mat-fab-position($spot, $top: auto, $right: auto, $bottom: auto, $left: auto) {
   [mat-fab].mat-fab-#{$spot} {
     top: $top;
