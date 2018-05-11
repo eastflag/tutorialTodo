@@ -6,29 +6,6 @@
     </mat-card-header>
 
     <mat-card-content fxLayout="column">
-<!--      <mat-form-field>
-        <input matInput [(ngModel)]="member.email" name="email" placeholder="이메일">
-        <mat-icon matSuffix>email</mat-icon>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput [(ngModel)]="member.pw" name="pw" type="password" placeholder="패스워드">
-        <mat-icon matSuffix>security</mat-icon>
-      </mat-form-field>
-      <button mat-raised-button color="primary" class="mat-block" (click)="signupWithPassword()">
-        <mat-icon>person_add</mat-icon>SignUp
-      </button>
-      <button mat-raised-button color="primary" class="mat-block" (click)="loginWithPassword()" style="margin: 1rem 0;">
-        <mat-icon>input</mat-icon>Login with Email
-      </button>
-
-      <button mat-raised-button color="accent" (click)="loginWithGoogle()">
-        Login with Google
-      </button>
-
-      <div class="mt-1">
-        <a [href]="naverUrl" *ngIf="naverUrl"><img src="/assets/images/naver.png" style="max-width: 100%;"></a>
-      </div>-->
-
       <button mat-raised-button class="button facebook my-1" *ngIf="naverUrl" (click)="gotoSocial('facebook')">
         <div fxLayout="row" fxLayoutAlign="start center">
           <span class="fab">f</span>
@@ -53,8 +30,5 @@
           <span fxFlex="1 1 auto"></span>
         </div>
       </button>
-
-
     </mat-card-content>
-
   </mat-card>

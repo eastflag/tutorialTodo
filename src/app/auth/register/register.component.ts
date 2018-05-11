@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.member = JSON.parse(localStorage.getItem('member'));
+    // this.member = JSON.parse(localStorage.getItem('member'));
 
     $("#postcode").postcodifyPopUp();
 
