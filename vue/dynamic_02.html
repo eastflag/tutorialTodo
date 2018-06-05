@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+
+<div id="app2">
+  <button @click="add">버튼추가</button><br>
+  <component v-for="item in buttons" :is="item"></component><br>
+  {{nice}}
+</div>
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</body>
+</html>
+
+<script>
+  Vue.component('my-button2', {
+    template: `<button @click="nice_fun()">개수확인</button>`
+    ,methods:{
+      nice_fun:function(){
+        app2.nice = '버튼추가 개수:'+app2.buttons.length;
+      }
+    }
+  })
+
+  var app2 = new Vue({
+    el: '#app2',
+    data: {
+      buttons: [],
+      nice: ''
+    },
+    methods: {
+      add () {
+        this.buttons.push('my-button2')
+      }
+    }
+  })
+</script>
