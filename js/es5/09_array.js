@@ -42,13 +42,11 @@ books.splice(2, 1);
 console.log(books);
 
 
-// 9. 원본 배열에서 자바의 정석을 찾아서 저자를 남궁성으로 바꾸시오(힌트: forEach)
+// 9. 원본 배열에서 제목이 자바의 정석인 객체를 찾으시오(힌트: find)
+// 리턴된 객체의 저자를 남궁성으로 바꾸면 원본 배열의 저자명도 바뀌는가? 그 이유는 무엇인가?
 console.log('9 -------------------------------------------------------------------');
-books.forEach(function(item) {
-  if(item.title === '자바의정석') {
-    item.author = '남궁성';
-  }
-});
+var tempBook = books.find(item => item.title === '자바의정석' ?  true : false);
+tempBook.author = "남궁성2";
 console.log(books);
 
 // 10. 책의 총 비용을 출력하시오
@@ -78,6 +76,20 @@ var newFilter = books.filter(function (item) {
   }
 });
 console.log(newFilter);
+
+// 13. 제목이 흥부놀부인 객체의 배열 인덱스를 찾으시오
+console.log('13 -------------------------------------------------------------------');
+let index = books.findIndex(item => item.title === '흥부놀부'?  true : false);
+console.log(index);
+
+// 14. 아래 5가지 스포츠가 있고, 각각에 대해서 좋아하는 부분에 대한 likes 배열이 있다.
+// likes가 true인 것만 골라서 ['football', 'handball'] 배열을 생성하세요.
+console.log('14 -------------------------------------------------------------------');
+let sports = ['baseball', 'football', 'basketball', 'swimming', 'handball'];
+let likes = [false, true, false, false,true];
+let result = likes.map((item, index) => item ? sports[index] : false)
+  .filter(item => item ? true: false);
+console.log(result);
 
 /*var a = fruits.pop();
  console.log(a);
