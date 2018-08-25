@@ -1,13 +1,7 @@
-import {Component, Inject, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {Observable} from "rxjs/Observable";
-import * as firebase from "firebase";
-import {AngularFireAuth} from "angularfire2/auth";
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MemberVO} from "../../domain/member.vo";
-import {AuthGuardService} from "../auth-guard.service";
-import {Subscription} from "rxjs/Subscription";
 import {UserService} from "../../user.service";
-import {MAT_DIALOG_DATA} from "@angular/material";
 
 @Component({
   selector: 'app-login',
