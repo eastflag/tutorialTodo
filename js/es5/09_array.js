@@ -91,6 +91,19 @@ let result = likes.map((item, index) => item ? sports[index] : false)
   .filter(item => item ? true: false);
 console.log(result);
 
+
+// 15. ['football', 'swimming] 를 [false, true, false, true, false] 로 변환하시오
+console.log('14 -------------------------------------------------------------------');
+let results = ['football', 'swimming'];
+let results_likes = sports.map(item => {
+  if (results.indexOf(item) > -1) {
+    return true;
+  } else {
+    return false;
+  }
+});
+console.log(results_likes);
+
 /*var a = fruits.pop();
  console.log(a);
  //Mango
