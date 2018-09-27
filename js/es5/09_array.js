@@ -2,73 +2,147 @@
  * Created by eastflag on 2016-10-14.
  */
 // 1. 아래의 내용을 리터럴 객체로 담는 array list를 생성하시오.
-//title	          price	  author	order
-//--------------------------------------
-//콩쥐팥쥐	      20000	  미상	  1
-//흥부놀부	      25000	  미상	  2
-//자바의정석	    35000	  정석	  3
-//안드로이드정복	15000	  김상형	4
+// title	                   price	author	        publisher
+//---------------------------------------------------------------------------
+// 인사이드 자바스크립트     18000	  송영주          한빛미디어
+// Vue.js 퀵 스타트	         30000	  원형섭          루비페이퍼
+// 자바의 정석               30000	  남궁성	          도우출판
+// 안드로이드 정복           35000	  김상형	        한빛미디어
+// Angular Essentials        32000  이웅모          루비페이퍼
+// 모두의 파이썬             12000  이승찬          길벗
+// 핸즈온 머신러닝           33000  오렐리앙 제롱   한빛미디어
+// 새로운 CSS 레이아웃       17000  레이철 앤드루   웹액츄얼리코리아
+// 러닝 리액트               28000  알렉스 뱅크스   한빛미디어
 var books = [
-  {title: "콩쥐팥쥐", price: 20000, author: "미상", order: 1},
-  {title: "흥부놀부", price: 25000, author: "미상", order: 2},
-  {title: "자바의정석", price: 35000, author: "정석", order: 3},
-  {title: "안드로이드정복", price: 15000, author: "김상형", order: 4},
+  {title: "인사이드 자바스크립트", price: 18000, author: "송영주", publisher: "한빛미디어"},
+  {title: "Vue.js 퀵 스타트", price: 30000, author: "원형섭", publisher: "루비페이퍼"},
+  {title: "자바의 정석", price: 30000, author: "남궁성", publisher: "도우출판"},
+  {title: "안드로이드 정복", price: 35000, author: "김상형", publisher: "한빛미디어"},
+  {title: "Angular Essentials", price: 32000, author: "이웅모", publisher: "루비페이퍼"},
+  {title: "모두의 파이썬", price: 12000, author: "이승찬", publisher: "길벗"},
+  {title: "핸즈온 머신러닝", price: 33000, author: "오렐리앙 제롱", publisher: "한빛미디어"},
+  {title: "새로운 CSS 레이아웃", price: 17000, author: "레이철 앤드루", publisher: "웹액츄얼리코리아"},
+  {title: "러닝 리액트", price: 28000, author: "알렉스 뱅크스", publisher: "한빛미디어"},
 ];
 
 // 2. books의 type은 무엇인가? 자바스크립트의 타입은 몇가지가 있는가?
-console.log(typeof books);
 
 
-//3. 맨 앞쪽에 이것이자바다, 40000, 김상형, 5를 추가하시오 (힌트: unshift)
-books.unshift({title: "이것이자바다", price: 40000, author: "김상형", order: 5});
+//3. books 배열의 맨 앞쪽에 "ECMAScript 6 길들이기 ", 20000, "나라얀 프루스티", "에이콘출판사" 를 추가하시오
+
 console.log(books);
-//4. 맨 앞쪽에 추가한것을 지우시오,
+
+//4. 방금 맨 앞쪽에 추가한 것을 지우시오,
+
+console.log(books);
+
+// 5. 이번에는 books 배열의 맨 뒷쪽에 동일한 객체를 추가하시오.
+
+console.log(books);
+
+// 6. 방금 맨 뒤쪽에 추가한것을 지우시오,
+
+console.log(books);
+
+
+// 7. 이번에는 자바의정석과 안드로이드정복 사이에 삽입하시오.
+console.log('7 -------------------------------------------------------------------');
+
+console.log(books);
+
+// 8. 방금 삽입한거를 삭제하시오.
+console.log('8 -------------------------------------------------------------------');
+
+console.log(books);
+
+
+// 9. books 배열에서 제목이 자바의 정석인 객체를 찾아서 출력하시오
+console.log('9 -------------------------------------------------------------------');
+var tempBook;
+
+console.log(tempBook);
+
+// 10. 제목이 모두의 파이썬인 객체의 배열 인덱스를 찾으시오
+console.log('10 -------------------------------------------------------------------');
+let index;
+
+console.log(index);
+
+// 11. 책의 총 비용을 출력하시오
+console.log('11 -----------------------------------------------');
+var sum = 0;
+
+console.log('sum:' + sum);
+
+// 12. 가격이 3만원이상인것을 모아서 별도의 배열을 만드시오
+console.log('12 -------------------------------------------------------------------');
+var newFilter;
+
+console.log(newFilter);
+
+// 13. 제목을 가나다 순서로 소팅한후 제목앞에 소팅된 번호를 붙인 새로운 배열을 생성하시오
+console.log('13 -------------------------------------------------------------------');
+var tempBooks;
+
+console.log(tempBooks);
+// [ '1 Angular Essentials',
+//   '2 Vue.js 퀵 스타트',
+//   '3 러닝 리액트',
+//   '4 모두의 파이썬',
+//   '5 새로운 CSS 레이아웃',
+//   '6 안드로이드 정복',
+//   '7 인사이드 자바스크립트',
+//   '8 자바의 정석',
+//   '9 핸즈온 머신러닝' ]
+
+
+
+/*
+//3. books 배열의 맨 앞쪽에 "ECMAScript 6 길들이기 ", 20000, "나라얀 프루스티", "에이콘출판사" 를 추가하시오
+books.unshift({title: "ECMAScript 6 길들이기 ", price: 20000, author: "나라얀 프루스티", publisher: "에이콘출판사"});
+console.log(books);
+
+//4. 방금 맨 앞쪽에 추가한 것을 지우시오,
 books.shift();
 console.log(books);
 
-// 5. 맨 뒷쪽에 추가하시오. (힌트: push)
-books.push({title: "이것이자바다", price: 40000, author: "김상형", order: 5});
+// 5. 이번에는 books 배열의 맨 뒷쪽에 동일한 객체를 추가하시오.
+books.push({title: "ECMAScript 6 길들이기 ", price: 20000, author: "나라얀 프루스티", publisher: "에이콘출판사"});
 console.log(books);
-// 6. 맨 뒤쪽에 추가한것을 지우시오,
+
+// 6. 방금 맨 뒤쪽에 추가한것을 지우시오,
 books.pop();
 console.log(books);
 
 
-// 7. 흥부놀부와 자바의정석 사이에 삽입하시오. (힌트: splice)
-books.splice(2, 0, {title: "이것이자바다", price: 40000, author: "김상형", order: 5});
+// 7. 이번에는 자바의정석과 안드로이드정복 사이에 삽입하시오.
+console.log('7 -------------------------------------------------------------------');
+books.splice(3, 0, {title: "ECMAScript 6 길들이기 ", price: 20000, author: "나라얀 프루스티", publisher: "에이콘출판사"});
 console.log(books);
+
 // 8. 방금 삽입한거를 삭제하시오.
-books.splice(2, 1);
+console.log('8 -------------------------------------------------------------------');
+books.splice(3, 1);
 console.log(books);
 
 
-// 9. 원본 배열에서 제목이 자바의 정석인 객체를 찾으시오(힌트: find)
-// 리턴된 객체의 저자를 남궁성으로 바꾸면 원본 배열의 저자명도 바뀌는가? 그 이유는 무엇인가?
+// 9. books 배열에서 제목이 자바의 정석인 객체를 찾아서 출력하시오
 console.log('9 -------------------------------------------------------------------');
-var tempBook = books.find(item => item.title === '자바의정석' ?  true : false);
-tempBook.author = "남궁성2";
-console.log(books);
+var tempBook = books.find(item => item.title === '자바의 정석' ?  true : false);
+console.log(tempBook);
 
-// 10. 책의 총 비용을 출력하시오
-console.log('10 -----------------------------------------------');
+// 10. 제목이 모두의 파이썬인 객체의 배열 인덱스를 찾으시오
+console.log('10 -------------------------------------------------------------------');
+let index = books.findIndex(item => item.title === '모두의 파이썬'?  true : false);
+console.log(index);
+
+// 11. 책의 총 비용을 출력하시오
+console.log('11 -----------------------------------------------');
 var sum = 0;
-books.forEach(function (item) {
-  sum += item.price;
-});
-console.log('forEach sum:' + sum);
+books.forEach(item => sum += item.price);
+console.log('sum:' + sum);
 
-
-// 11. 제목앞에 판매순위를 등수를 붙인("콩쥐팥쥐" => "1등 콩쥐팥쥐") 새로운 배열을 생성 하시오.(힌트: map)
-// 기존 배열의 값은 변경하지 말고 제목만 변경된 새로운 배열을 생성
-console.log('11 -------------------------------------------------------------------');
-var newMap = books.map(item => {
-    return Object.assign({}, item, {title: item.order + '등 ' + item.title});
-});
-console.log("11 new: ", newMap);
-console.log("11 old: ", books);
-
-
-// 12. 3등안에 있는것만 걸러서 별도의 배열을 만드시오 (힌트: filter)
+// 12. 가격이 3만원이상인것을 모아서 별도의 배열을 만드시오
 console.log('12 -------------------------------------------------------------------');
 var newFilter = books.filter(function (item) {
   if(item.order <= 3) {
@@ -77,76 +151,7 @@ var newFilter = books.filter(function (item) {
 });
 console.log(newFilter);
 
-// 13. 제목이 흥부놀부인 객체의 배열 인덱스를 찾으시오
+// 13. 제목을 가나다 순서로 소팅한후 제목앞에 소팅된 번호를 붙인 새로운 배열을 생성하시오
 console.log('13 -------------------------------------------------------------------');
-let index = books.findIndex(item => item.title === '흥부놀부'?  true : false);
-console.log(index);
-
-// 14. 아래 5가지 스포츠가 있고, 각각에 대해서 좋아하는 부분에 대한 likes 배열이 있다.
-// likes가 true인 것만 골라서 ['football', 'handball'] 배열을 생성하세요.
-console.log('14 -------------------------------------------------------------------');
-let sports = ['baseball', 'football', 'basketball', 'swimming', 'handball'];
-let likes = [false, true, false, false,true];
-let result = likes.map((item, index) => item ? sports[index] : false)
-  .filter(item => item ? true: false);
-console.log(result);
-
-
-// 15. ['football', 'swimming] 를 [false, true, false, true, false] 로 변환하시오
-console.log('14 -------------------------------------------------------------------');
-let results = ['football', 'swimming'];
-let results_likes = sports.map(item => {
-  if (results.indexOf(item) > -1) {
-    return true;
-  } else {
-    return false;
-  }
-});
-console.log(results_likes);
-
-/*var a = fruits.pop();
- console.log(a);
- //Mango
- fruits.push("Kiwi");
- console.log(fruits); //
- // [ 'Banana', 'Orange', 'Apple', 'Kiwi' ]
-
- //shift, unshift test
- var fruits = ["Banana", "Orange", "Apple", "Mango"];
- var b = fruits.shift();
- console.log(b);
- //Banana
- fruits.unshift("Kiwi");
- console.log(fruits);
- //[ 'Kiwi', 'Orange', 'Apple', 'Mango' ]
-
- //splice test
- var fruits = ["Banana", "Orange", "Apple", "Mango"];
- fruits.splice(2, 1, "Lemon", "Kiwi");
- //2번 인덱스에 1개(Apple)를 지우고 Lemon,과 Kiwi를 삽입한다.
- console.log(fruits);
- //[ 'Banana', 'Orange', 'Lemon', 'Kiwi', 'Mango' ]
-
- var fruits = ["Banana", "Orange", "Apple", "Mango"];
- fruits.splice(1, 2);
- //1번 인덱스에 2개(Orange, Apple)를 지운다.
- console.log(fruits);
- //[ 'Banana', 'Mango' ]
-
- //map test : 배열의 모든 요소에 fullname property를 추가하고 싶다.
- var persons = [
- {firstname : "Malcom", lastname: "Reynolds"},
- {firstname : "Kaylee", lastname: "Frye"},
- {firstname : "Jayne", lastname: "Cobb"}
- ];
- persons.map(function (item, index) {
- item.fullname = item.firstname + " " + item.lastname;
- });
- console.log(persons);*/
-/*[ { firstname: 'Malcom',
- lastname: 'Reynolds',
- fullname: 'Malcom Reynolds' },
- { firstname: 'Kaylee',
- lastname: 'Frye',
- fullname: 'Kaylee Frye' },
- { firstname: 'Jayne', lastname: 'Cobb', fullname: 'Jayne Cobb' } ]*/
+var tempBooks = books.sort((a, b) => a.title > b.title).map((item, index) => item.title = (index + 1) + " " + item.title);
+console.log(tempBooks);*/
