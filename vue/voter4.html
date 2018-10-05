@@ -18,8 +18,10 @@
   Vue.component('voter-taker', {
     template:
       `<div>
-        <voter v-bind:name="name" :result="result" v-on:on-agree="handleAgree"
-         v-on:on-disagree="handleDisagree"></voter>
+        <p>Agree: {{totalAgree}}</p>
+        <p>Disagree: {{totalDisagree}}</p>
+        <voter v-for="(item, index) in voters" v-bind="item" v-on:on-agree="handleAgree"
+         v-on:on-disagree="handleDisagree" :key="index"></voter>
       </div>`,
     data: function() {
       return {
@@ -27,15 +29,35 @@
           {name: 'hong kil dong', result: null},
           {name: 'lee dong kee', result: null},
           {name: 'kim chul su', result: null},
-        ]
+        ],
+        totalAgree: 0,
+        totalDisagree: 0
       }
     },
     methods: {
-      handleAgree: function(){
-        this.result = 'agree';
+      handleAgree: function(voter){
+        console.log(voter);
+        // 해당 name을 찾아서 result 값 업데이트
+        this.voters.forEach(item => {
+          if (item.name === voter.name) {
+            item.result = voter.result;
+          }
+        });
+
+        // 전체 찬성, 반대 숫자 카운트
+        this.totalAgree = 0;
+        this.totalDisagree = 0;
+        this.voters.forEach(item => {
+          if (item.result === 'agree') {
+            ++this.totalAgree;
+          } else if (item.result === 'disagree') {
+            ++this.totalDisagree;
+          }
+        })
       },
-      handleDisagree: function () {
-        this.result = 'disagree';
+      handleDisagree: function (voter) {
+        console.log(voter);
+        this.handleAgree(voter);
       }
     }
   });
@@ -54,10 +76,10 @@
     },
     methods: {
       agree: function(){
-        this.$emit('on-agree');
+        this.$emit('on-agree', {name: this.name, result: 'agree'});
       },
       disagree: function () {
-        this.$emit('on-disagree');
+        this.$emit('on-disagree', {name: this.name, result: 'disagree'});
       }
     }
   });
