@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <h2 id="display">hong kil dong: </h2>
+  <button @click="agree" id="agree">Agree</button>
+  <button @click="disagree" id="disagree">DisAgree</button>
+</div>
+
+
+</body>
+</html>
+
+<script>
+  $('#agree').click(function () {
+    $('#display').text('hong kil dong: ' + 'Agree');
+  })
+  $('#disagree').click(function () {
+    $('#display').text('hong kil dong: ' + 'Disagree');
+  });
+</script>

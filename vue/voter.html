@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+
+<div id="app">
+<!--  <h1>agree: {{ agree }}</h1>
+  <h1>disagree: {{ disagree }}</h1>-->
+  <div v-for="item in voters">
+    <voter v-bind:name="item.name" v-bind:result="item.result"></voter>
+  </div>
+
+</div>
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</body>
+</html>
+
+<script>
+  var voter = Vue.component('voter', {
+    props: ['name', 'result'],
+    template:  `<div>
+                  <button v-on:click="agree">Agree</button>
+                  <button v-on:click="disagree">Disagree</button>
+                  <span>{{name}}: {{result}}</span>
+                </div>`,
+    data: function() {
+      return {
+      }
+    },
+    mounted: function() {
+      console.log(voter);
+    },
+    methods: {
+      agree: function(){
+        console.log(this);
+      },
+      disagree: function () {
+        this.props.result = false;
+      }
+    }
+  });
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      voters: [
+        {name: 'lee', result: null},
+        {name: 'kim', result: null},
+        {name: 'park', result: null},
+      ]
+    },
+    methods: {
+
+    }
+  });
+</script>

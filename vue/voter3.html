@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+
+<div id="app">
+  <h1>투표자</h1>
+  <span>result: {{result}}</span>
+  <voter v-bind:name="name" :result="result" v-on:on-agree="handleAgree"
+         v-on:on-disagree="handleDisagree"></voter>
+</div>
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</body>
+</html>
+
+<script>
+  Vue.component('voter', {
+    template:
+      `<div>
+        <h2>{{name}}: {{ result }}</h2>
+        <button @click="agree">Agree</button>
+        <button @click="disagree">DisAgree</button>
+      </div>`,
+    props: ['name', 'result'],
+    data: function() {
+      return {
+      }
+    },
+    methods: {
+      agree: function(){
+        this.$emit('on-agree');
+      },
+      disagree: function () {
+        this.$emit('on-disagree');
+      }
+    }
+  });
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      name: 'hong kil dong',
+      result: null
+    },
+    methods: {
+      handleAgree: function(){
+        this.result = 'agree';
+      },
+      handleDisagree: function () {
+        this.result = 'disagree';
+      }
+    }
+  });
+</script>

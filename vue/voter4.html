@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+
+<div id="app">
+  <voter-taker></voter-taker>
+</div>
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</body>
+</html>
+
+<script>
+  Vue.component('voter-taker', {
+    template:
+      `<div>
+        <voter v-bind:name="name" :result="result" v-on:on-agree="handleAgree"
+         v-on:on-disagree="handleDisagree"></voter>
+      </div>`,
+    data: function() {
+      return {
+        voters: [
+          {name: 'hong kil dong', result: null},
+          {name: 'lee dong kee', result: null},
+          {name: 'kim chul su', result: null},
+        ]
+      }
+    },
+    methods: {
+      handleAgree: function(){
+        this.result = 'agree';
+      },
+      handleDisagree: function () {
+        this.result = 'disagree';
+      }
+    }
+  });
+
+  Vue.component('voter', {
+    template:
+      `<div>
+        <h2>{{name}}: {{ result }}</h2>
+        <button @click="agree">Agree</button>
+        <button @click="disagree">DisAgree</button>
+      </div>`,
+    props: ['name', 'result'],
+    data: function() {
+      return {
+      }
+    },
+    methods: {
+      agree: function(){
+        this.$emit('on-agree');
+      },
+      disagree: function () {
+        this.$emit('on-disagree');
+      }
+    }
+  });
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+    },
+    methods: {
+    }
+  });
+</script>
