@@ -1,3 +1,5 @@
+console.log('start');
+
 function resolveAfter2Seconds(x) {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -12,9 +14,12 @@ async function add1(x) {
   return x + a + b;
 }
 
+
 add1(10).then(v => {
   console.log(v);  // prints 60 after 4 seconds.
 });
+
+add1(10)
 
 async function add2(x) {
   const p_a = resolveAfter2Seconds(20);
@@ -23,6 +28,8 @@ async function add2(x) {
 }
 
 // Promise.all과 다르다. 두개가 순차적으로 동시에 실행
-add2(10).then(v => {
-  console.log(v);  // prints 60 after 2 seconds.
-});
+// add2(10).then(v => {
+//   console.log(v);  // prints 60 after 2 seconds.
+// });
+
+console.log('end');
