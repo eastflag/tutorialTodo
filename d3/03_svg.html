@@ -13,8 +13,8 @@
     .attr("width", 500)
     .attr("height", 500);
   var bars = canvas.selectAll("rect")
-    .data(dataArray)
-    .enter()
+    .data(dataArray) // data join
+    .enter() // 현재는 존재하지 않지만 앞으로 들어올것이다. append로 추가
     .append("rect")
     .attr("width", function(d){ return d* 10; })
     .attr("height", 50)
