@@ -34,6 +34,7 @@ import { CommentComponent } from './comment/comment.component';
 import {CommentDialogComponent} from "./comment/comment.dialog.component";
 import { ChatComponent } from './chat/chat.component';
 import {LoginDialogComponent} from "./auth/login/login.dialog.component";
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import {LoginDialogComponent} from "./auth/login/login.dialog.component";
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [UserService, AngularFireAuth, AuthGuardService],
   entryComponents: [LoginDialogComponent, CommentDialogComponent],
