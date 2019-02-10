@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {RequestOptions} from "@angular/http";
-import {Subject} from "rxjs/Subject";
+import {Subject} from "rxjs";
 
 @Injectable()
 export class AdminService {

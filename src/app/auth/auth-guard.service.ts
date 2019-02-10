@@ -5,13 +5,10 @@ import {
 } from "@angular/router";
 import {UserService} from "../user.service";
 import {AngularFireAuth} from "angularfire2/auth";
-import {MemberVO} from "../domain/member.vo";
-import {ResultVO} from "../domain/result.vo";
 import {JwtHelper} from "angular2-jwt";
-import {Observable} from "rxjs/Observable";
-import {Subject} from "rxjs/Subject";
 import {LoginDialogComponent} from "./login/login.dialog.component";
 import {MatDialog, MatSnackBar} from "@angular/material";
+import {Observable, Subject} from "rxjs";
 
 @Injectable()
 export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad {

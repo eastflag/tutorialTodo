@@ -4,8 +4,8 @@ import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {environment} from "../environments/environment";
 import {TodoVO} from "./domain/todo.vo";
 import {MemberVO} from "./domain/member.vo";
-import {Observable} from "rxjs/Observable";
 import {ResultVO} from "./domain/result.vo";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class UserService {
