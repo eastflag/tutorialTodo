@@ -9,15 +9,18 @@
 //    주의: 메서드가 객체로부터 분리될때
 // 간접 실행: alert.call(undefined, 'Hello World!')
 
-function person() {
+function Person() {
   this.arms = 2;
   this.legs = 2;
 }
 
-// arms의 출력 결과는 무엇인가?
-// console.log(arms);
-// Person() 실행결과는 무엇인가? 그 이유는?
-console.log(person());
-// arms의 출력 결과는 무엇인가?  여기서 사용된 this는 무엇인가?
+// 자바스크립트에서 객체를 생성하는 2가지 방법은 무엇인가? 아래는 어떤 방법인가?
+var person = new Person();
+// 실행 결과는 무엇인가? 실행결과에 대해서 설명하시오.
+console.log(person);
+// literal 객체로  person 객체를 생성하시오.
+
+// 실행 결과는 무엇인가? 여기서 사용된 this는 무엇인가?
 console.log(arms);
+// 만일 this.arms, this.legs가 없다면 new Person()의 결과는 무엇인가?
 

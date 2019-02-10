@@ -3,8 +3,7 @@ let circleArea = function(pi, r) {
     return area;
 };
 
-// 위의 문장을 한줄로 작성하시오.
-let circleArea = (pi, r) => pi * r * r;
+// 위는 함수 표현식이다. 익명함수 부분을 애로우 펑션으로 바꾸시오
 
 let result = circleArea(3.14, 3);
 
