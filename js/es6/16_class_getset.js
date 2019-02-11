@@ -3,11 +3,9 @@
 
 // nickname을 출력해보자.
 
-// name 파라메터를 받아서 속성인 name에 대입하는 nickname이라는 이름의 setter 를 추가하시오.
-
-// nickname setter를 사용하여 "Johnson"을 할당하시오.
-
-// nickname getter를 다시 출력하자 무엇이 출력되는가?
+// teacher라는 이름을 가진 setter, getter 를 추가하자.
+// setter는 name을 파라메터로 받아서 _teacher backing property에 저장하고
+// getter 에서 이 backing property를 리턴한다.
 
 class Student {
   constructor(name) {
@@ -26,17 +24,25 @@ class Student {
     }
   }
 
-  set nickname(name) {
-    this.name = name;
+  get teacher() {
+    return this._teacher;
+  }
+
+  set teacher(name) {
+    this._teacher = name;
   }
 }
 
 let user1 = new Student("Jane");
 console.log(user1);
 
-user1.changeName("Tom");
+console.log(user1.nickname);
 
+user1.teacher = 'JohnSon';
 console.log(user1);
-console.log(user1.nickname);
-user1.nickname = 'JohnSon';
-console.log(user1.nickname);
+console.log(user1._teacher);
+
+
+// getter 는 속성에는 없지만 속성과 동일하게 사용가능한 dynamic or computed property 이다.
+
+// setter는 속성과 동일하게 사용가능하고 속성과 동일한 이름을 사용해서는 안된고, backing property를 사용해야 한다.
