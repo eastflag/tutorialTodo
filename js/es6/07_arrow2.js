@@ -16,7 +16,7 @@
 
 var p = new Person();*/
 
-function Person(){
+/*function Person(){
     this.age = 0;
 
     setInterval(() => {
@@ -25,4 +25,30 @@ function Person(){
     }, 1000);
 }
 
-var p = new Person();
+var p = new Person();*/
+
+/*const res = function(a) {
+  return function(b) {
+    return a + b;
+  }
+}*/
+
+// curring function
+
+// res는 펑션이다. a => (b => a + b)
+// a를 입력했더니 function이 리턴되고 그 function에 b를 입력했더니 a + b가 리턴된다.는 의미
+const res = a => b => a + b;
+console.log(res(1)(2));
+
+
+const res2 = a => b => c => {
+  console.log(a, b, c);
+  return a + b + c;
+}
+console.log(res2(1)(2)(3));
+
+const res3= a => b => c => {
+  return a + b(c);
+}
+
+console.log(res3(1)(() => 2)(3));
