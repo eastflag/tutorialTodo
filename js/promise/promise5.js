@@ -1,15 +1,15 @@
 new Promise(resolve => {
     setTimeout(()=>{
         console.log('async1');
-        resolve('success');
+        resolve('success1');
     }, 1000);
 }).then(value=>{
     //비동기 작업을 Promise로 감싸서 동기식으로 처리하게 했다.
     console.log(value);
-    return new Promise(res=>{
+    return new Promise(resolve =>{
         setTimeout(()=>{
-            console.log('async2');
-            res('async2 success');
+          console.log('async2');
+          resolve('async2 success');
         }, 1000);
     })
 }).then(value=>{
