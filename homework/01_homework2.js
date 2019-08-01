@@ -43,8 +43,12 @@ var book = {title: "Cinderella", price: 30, author: "Perrault", rank: 5};
 // 10. Sum all the price of books array.
 
 
-// 11. Create a new array with a rank number before a title
-// example) {title: "1. Three Little Pigs", price: 20, author: "Jacobs", rank: 1}
+// 11. After sorting first with title, create a new array with a rank number before a title
+// the result is
+// [ '1. Alice in Wonderland',
+//   '2. Seven Dwarfs',
+//   '3. Swallow\'s gift',
+//   '4. Three Little Pigs' ]
 
 
 // 12. Create a new array with rank < 3

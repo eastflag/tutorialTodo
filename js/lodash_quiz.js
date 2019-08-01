@@ -25,8 +25,12 @@ result = _.filter(books, book => book.price > 30000);
 console.log('3 ----------------------');
 console.log(result);
 
-// 4. Create a new array with a rank number before a title
-// example) {title: "1. Three Little Pigs", price: 20, author: "Jacobs", rank: 1}
+// 4. After sorting first with title, create a new array with a rank number before a title
+// the result is
+// [ '1. Alice in Wonderland',
+//   '2. Seven Dwarfs',
+//   '3. Swallow\'s gift',
+//   '4. Three Little Pigs' ]
 result = _.chain(books)
   .sortBy('title')
   .map((book, index) => (index + 1) + '. ' + book.title).value();
