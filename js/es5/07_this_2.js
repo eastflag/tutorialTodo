@@ -1,25 +1,40 @@
-/*function Animal(type, legs) {
-  this.type = type;
-  this.legs = legs;
-  this.logInfo = function() {
-    console.log(this === myCat);
-    console.log('The ' + this.type + ' has ' + this.legs + ' legs');
-  }
-}
-var myCat = new Animal('Cat', 4);*/
-
+// 4. json this and lexical this
+// json this is enclosing context's parent
 var myCat = {
   type: 'Cat',
   legs: 4,
   logInfo: function() {
+    console.log(this);
     console.log('The ' + this.type + ' has ' + this.legs + ' legs');
   }
 }
-
-// 리터럴 객체로 Animal 객체를 적으시오.
-// 실행결과를 적으시오. function 안에 this는 무엇을 가르키는가?
 myCat.logInfo();
-console.log(myCat);
+// 아래 실행결과는 this.type, this.legs가 모두 undefined이다. 위와 같은 결과가 되도록 수정하시오.
+myCat = {
+  type: 'Cat',
+  legs: 4,
+  logInfo: function() {
+    setTimeout(function() {
+      // this is global object
+      console.log('The ' + this.type + ' has ' + this.legs + ' legs');
+    }, 1000);
+  }
+}
+myCat.logInfo();
+
+// setTimeout 펑션은 큐에서 실해오디고 parent는 global 객체를 가르키게 된다.
+// 애로우 펑션은 실행순서와는 상관없이 현재 문법 그대로 lexical로 바인딩한다.
+// 현재의 enclosing context 의 부모는 myCat을 가르키게 된다.
+myCat = {
+  type: 'Cat',
+  legs: 4,
+  logInfo: function() { // <-- enclosing context
+    setTimeout(() => {
+      // this is global object
+      console.log('The ' + this.type + ' has ' + this.legs + ' legs');
+    }, 1000);
+  }
+}
 
 // 실행결과를 적으시오. this는 무엇을 가르키는가?
 setTimeout(myCat.logInfo, 1000);
